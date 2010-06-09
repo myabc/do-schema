@@ -7,6 +7,7 @@ require 'do-schema/column/string'
 
 require 'do-schema/adapters/adapter'
 require 'do-schema/adapters/postgres/adapter'
+require 'do-schema/adapters/sqlite3/adapter'
 
 module DataObjects::Schema
 
@@ -18,7 +19,8 @@ module DataObjects::Schema
 
     # Determine required adapter
     driver_name = connection.class.to_s.split('::')[1]
-    adapter_class = DataObjects::Schema::Adapters.const_get(driver_name)::Adapter
+
+    adapter_class = DataObjects::Schema::Adapters::const_get(driver_name)::Adapter
     adapter = adapter_class.new(connection)
     adapter.database
   end
