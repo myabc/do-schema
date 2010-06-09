@@ -11,3 +11,5 @@ unless File.exist?(@@db_file)
   puts "Executing '#{sqlite_command}'"
   raise "Seems that there is no sqlite3 executable available" unless system(sqlite_command)
 end
+
+require 'schemas/sqlite3_schema'

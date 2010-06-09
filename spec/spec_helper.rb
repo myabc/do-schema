@@ -6,6 +6,10 @@ require 'do-schema'
 require 'spec'
 require 'spec/autorun'
 
+Dir["#{File.dirname(__FILE__)}/{shared}/*.rb"].each do |file|
+  require file
+end
+
 Spec::Runner.configure do |config|
 
 end
