@@ -19,5 +19,16 @@ module DataObjects::Schema
       adapter.tables(self)
     end
 
+    def table_exists?(name)
+      !table(name).nil?
+    end
+
+    def columns(table)
+      adapter.columns(table)
+    end
+
+    def table(name)
+      tables.select { |table| table.name == name }.first
+    end
   end
 end

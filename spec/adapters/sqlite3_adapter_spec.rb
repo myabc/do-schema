@@ -8,7 +8,9 @@ describe "Schema" do
     database.should_not be_nil
   end
 
+  it_should_behave_like("table")
   it_should_behave_like("databases")
+
 end
 
 
