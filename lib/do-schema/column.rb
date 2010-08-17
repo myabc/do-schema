@@ -1,12 +1,14 @@
 module DataObjects::Schema
+
   class Column
+
     attr_reader :name, :default, :null, :type
 
     def initialize(name, default_value, sql_type=nil, null=false)
-      @name = name
+      @name    = name
       @default = default_value
-      @type = type_map[sql_type.upcase.gsub(/\(.*\)/, "")] # remove length
-      @null = null
+      @type    = type_map[sql_type.upcase.gsub(/\(.*\)/, "")] # remove length
+      @null    = null
     end
 
     protected
@@ -26,5 +28,6 @@ module DataObjects::Schema
         "TEXT"      => :text,
       }
     end
+
   end
 end

@@ -1,4 +1,5 @@
 module DataObjects::Schema
+
   class Database
 
     attr_reader :adapter
@@ -30,5 +31,6 @@ module DataObjects::Schema
     def table(name)
       tables.select { |table| table.name == name }.first
     end
+
   end
 end

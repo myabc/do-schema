@@ -1,4 +1,5 @@
 module DataObjects::Schema::Adapters
+
   class Adapter
 
     attr_reader :connection
@@ -10,5 +11,6 @@ module DataObjects::Schema::Adapters
     def database
       DataObjects::Schema::Database.new(self)
     end
+
   end
 end

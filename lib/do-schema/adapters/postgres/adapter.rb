@@ -1,4 +1,5 @@
 module DataObjects::Schema::Adapters::Postgres
+
   class Adapter < DataObjects::Schema::Adapters::Adapter
 
     def columns(table)
