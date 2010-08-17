@@ -1,1 +1,4 @@
 --color
+--loadby random
+--format profile
+--backtrace
