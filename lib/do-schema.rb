@@ -1,13 +1,10 @@
 require 'data_objects'
+
 require 'do-schema/database'
 require 'do-schema/table'
 require 'do-schema/column'
 require 'do-schema/column/integer'
 require 'do-schema/column/string'
-
-require 'do-schema/adapters/adapter'
-require 'do-schema/adapters/postgres/adapter'
-require 'do-schema/adapters/sqlite3/adapter'
 
 module DataObjects::Schema
 
