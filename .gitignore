@@ -22,3 +22,5 @@ pkg
 .bundle
 bin
 tmp
+Gemfile.lock
+
