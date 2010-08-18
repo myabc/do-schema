@@ -4,9 +4,9 @@ module DataObjects::Schema
 
     attr_reader :name, :default, :null, :type
 
-    def initialize(name, default_value, sql_type=nil, null=false)
+    def initialize(name, default, sql_type = nil, null = false)
       @name    = name
-      @default = default_value
+      @default = default
       @type    = type_map[sql_type.upcase.gsub(/\(.*\)/, "")] # remove length
       @null    = null
     end
