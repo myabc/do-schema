@@ -18,7 +18,6 @@ module DataObjects::Schema
     def initialize(tables = [])
       @tables = Set.new
       merge(tables)
-      freeze
     end
 
     # Append to the Tables collection

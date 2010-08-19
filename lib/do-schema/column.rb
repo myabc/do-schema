@@ -18,7 +18,6 @@ module DataObjects::Schema
     def initialize(columns = [])
       @columns = OrderedSet.new
       merge(columns)
-      freeze
     end
 
     # Append to the Columns collection
