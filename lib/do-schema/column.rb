@@ -1,32 +1,83 @@
+require 'do-schema/support/ordered_set'
+require 'do-schema/support/equalizable'
+require 'do-schema/support/transformable'
+
 module DataObjects::Schema
+
+  class Columns
+
+    include Enumerable
+    include Transformable
+
+    extend Equalizable
+
+    attr_reader :columns
+
+    equalize :columns
+
+    def initialize(columns = [])
+      @columns = OrderedSet.new
+      merge(columns)
+      freeze
+    end
+
+    # Append to the Columns collection
+    #
+    # @param [Column] column
+    #   the column to append
+    #
+    # @return [ Columns]
+    #   returns self
+    #
+    # @api private
+    def <<(column)
+      transform { @columns << column }
+    end
+
+    def merge(other)
+      transform { other.each { |entry| @columns << entry } }
+    end
+
+    def each(&block)
+      @colums.each(&block)
+    end
+
+    def empty?
+      @columns.empty?
+    end
+
+  end
 
   class Column
 
-    attr_reader :name, :default, :null, :type
+    extend Equalizable
 
-    def initialize(name, default, sql_type = nil, null = false)
-      @name    = name
-      @default = default
-      @type    = type_map[sql_type.upcase.gsub(/\(.*\)/, "")] # remove length
-      @null    = null
+    attr_reader :name
+    attr_reader :options
+    attr_reader :default
+
+    equalize :name, :default, :required?
+
+    def initialize(name, options)
+      @name     = name
+      @options  = default_options.merge(options)
+      @default  = @options[:default]
+      @required = @options[:required]
     end
 
-    protected
+    # @api public
+    def required?
+      @required
+    end
 
-    def type_map
-      {
-        "BLOB"      => :string,
-        "INTEGER"   => :integer,
-        "INT"       => :integer,
-        "VARCHAR"   => :string,
-        "DECIMAL"   => :decimal,
-        "FLOAT"     => :float,
-        "TIMESTAMP" => :timestamp,
-        "DATE"      => :date,
-        "TIMESTAMP" => :time,
-        "BOOLEAN"   => :boolean,
-        "TEXT"      => :text,
-      }
+    # @api public
+    def to_ddl
+      raise NotImplementedError
+    end
+
+    # @api semipublic
+    def default_options
+      { :required => true }
     end
 
   end
