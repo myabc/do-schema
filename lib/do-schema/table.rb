@@ -1,5 +1,6 @@
 require 'do-schema/support/equalizable'
 require 'do-schema/support/transformable'
+require 'do-schema/column'
 
 module DataObjects::Schema
 
