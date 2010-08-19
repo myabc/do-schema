@@ -50,7 +50,8 @@ begin
       # TODO once work on adapters start this needs to be removed
 
       excluded_modules = %w[
-        DataObjects::Schema::Adapters
+        DataObjects::Schema::OrderedSet
+        DataObjects::Schema::Equalizable
       ]
 
       next if excluded_modules.include?(mod.name)
