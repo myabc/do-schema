@@ -14,11 +14,11 @@ end
 
 describe 'DataObjects::Schema::Tables#each' do
 
-  subject { tables.each { |c| yields << c } }
+  subject { tables.each { |table| yields << table } }
 
   let(:tables) { DataObjects::Schema::Tables.new([table]) }
-  let(:table)  { DataObjects::Schema::Table.new('name')      }
-  let(:yields) { []                                               }
+  let(:table)  { DataObjects::Schema::Table.new('name')   }
+  let(:yields) { []                                       }
 
   it { should equal(tables) }
 

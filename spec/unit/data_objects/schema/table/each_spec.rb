@@ -14,7 +14,7 @@ end
 
 describe 'DataObjects::Schema::Table#each' do
 
-  subject { table.each { |c| yields << c } }
+  subject { table.each { |column| yields << column } }
 
   let(:table)  { DataObjects::Schema::Table.new('name', [column]) }
   let(:column) { DataObjects::Schema::Column.new('name', {})      }
