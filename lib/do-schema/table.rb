@@ -95,3 +95,4 @@ module DataObjects::Schema
 
   end
 end
+
