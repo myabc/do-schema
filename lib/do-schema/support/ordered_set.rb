@@ -1,7 +1,11 @@
 module DataObjects::Schema
 
   class OrderedSet
+
+    extend Equalizable
     include Enumerable
+
+    equalize :entries
 
     # Returns the OrderedSet instance
     #
