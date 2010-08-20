@@ -39,6 +39,7 @@ module DataObjects::Schema
 
     def each(&block)
       @columns.each(&block)
+      self
     end
 
     def empty?
