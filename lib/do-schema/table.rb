@@ -71,6 +71,7 @@ module DataObjects::Schema
 
   class Table
 
+    include Enumerable
     extend Equalizable
 
     attr_reader :name
