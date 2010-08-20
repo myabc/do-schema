@@ -1,3 +1,4 @@
+require 'addressable/uri'
 require 'do-schema/table'
 
 module DataObjects::Schema
