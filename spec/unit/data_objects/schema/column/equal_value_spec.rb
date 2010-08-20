@@ -1,6 +1,24 @@
 require 'spec_helper'
 require 'do-schema/column'
 
+module DataObjects::Schema::Specs
+
+  # Used to test duck typing behavior
+  class ColumnDuck
+    attr_reader :name
+    attr_reader :default
+
+    def initialize(name, options)
+      @name, @options = name, options
+      @default  = options[:default]
+      @required = options[:required]
+    end
+    def required?
+      @required
+    end
+  end
+end
+
 describe 'DataObjects::Schema::Column#==' do
 
   subject { column == other }
@@ -36,6 +54,18 @@ describe 'DataObjects::Schema::Column#==' do
     let(:other) { Class.new(DataObjects::Schema::Column).new(name, original_options) }
 
     it { should be(true) }
+
+    it 'is symmetric' do
+      should == (other == column)
+    end
+  end
+
+  # TODO This probably needs more thought
+  context 'with a class that quacks like a Column and is otherwise equal' do
+
+    let(:other) { DataObjects::Schema::Specs::ColumnDuck.new(name, original_options) }
+
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (other == column)

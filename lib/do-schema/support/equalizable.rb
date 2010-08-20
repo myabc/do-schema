@@ -13,7 +13,13 @@ module DataObjects::Schema
     def define_eql_method(methods)
       class_eval <<-RUBY, __FILE__, __LINE__ + 1
         def eql?(other)
-          return true if equal?(other)
+
+          # NOTE the following optimization is left out currently
+          # because I haven't yet found a feasible way to get heckle
+          # to pass with that code in place
+          #
+          # return true if equal?(other)
+
           instance_of?(other.class) &&
           #{methods.map { |method| "#{method}.eql?(other.#{method})" }.join(' && ')}
         end
@@ -31,9 +37,21 @@ module DataObjects::Schema
 
       class_eval <<-RUBY, __FILE__, __LINE__ + 1
         def ==(other)
-          return true if equal?(other)
+
+          # NOTE the following optimization is left out currently
+          # because I haven't yet found a feasible way to get heckle
+          # to pass with that code in place
+          #
+          # return true if equal?(other)
+
           return false unless kind_of?(other.class) || other.kind_of?(self.class)
-          #{respond_to.join(' && ')} &&
+
+          # This is not necessary when relying on #kind_of? already
+          # If we decide to rely on duck typing only, this code must
+          # be readded
+
+          # #{respond_to.join(' && ')} &&
+
           #{equivalent.join(' && ')}
         end
       RUBY
