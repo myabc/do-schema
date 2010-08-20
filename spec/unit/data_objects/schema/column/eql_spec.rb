@@ -42,18 +42,6 @@ describe 'DataObjects::Schema::Column#eql?' do
     end
   end
 
-  context 'with aa column subclass that is otherwise equal' do
-
-    let(:other) { Class.new(DataObjects::Schema::Column).new(name, options) }
-    let(:options) { { :default => 'foo', :required => true } }
-
-    it { should be(false) }
-
-    it 'is symmetric' do
-      should == other.eql?(column)
-    end
-  end
-
   context 'with a different name and the same options' do
 
     let(:other) { DataObjects::Schema::Column.new('different name', original_options) }
