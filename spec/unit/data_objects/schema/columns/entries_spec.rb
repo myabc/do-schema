@@ -15,12 +15,12 @@ describe 'DataObjects::Schema::Columns#entries' do
 
   context 'with entries' do
 
-    subject { tables.entries }
+    subject { columns.entries }
 
-    let(:table)  { DataObjects::Schema::Table.new('name')   }
-    let(:tables) { DataObjects::Schema::Tables.new([table]) }
+    let(:column)  { DataObjects::Schema::Column.new('name', {}) }
+    let(:columns) { DataObjects::Schema::Columns.new([column])  }
 
-    it { should include(table) }
+    it { should include(column) }
 
   end
 
