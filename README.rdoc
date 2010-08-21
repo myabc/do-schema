@@ -2,7 +2,7 @@
 
 The goal of this project is to provide a Ruby API that allows the
 construction of, and reflection on, all databases that are supported by
-the "DataObjects"[http://github.com/datamapper/do] project.
+the DataObjects[http://github.com/datamapper/do] project.
 
 === Status
 
@@ -51,7 +51,7 @@ lacking are marked with a TODO comment.
 
 === TODO
 
-See the "TODO list"[http://github.com/snusnu/do-schema/blob/rewind/TODO]
+See the TODO[http://github.com/snusnu/do-schema/blob/rewind/TODO] list
 
 == Note on Patches/Pull Requests
 
