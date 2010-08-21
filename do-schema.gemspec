@@ -61,11 +61,13 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/columns/append_spec.rb",
      "spec/unit/data_objects/schema/columns/each_spec.rb",
      "spec/unit/data_objects/schema/columns/empty_spec.rb",
+     "spec/unit/data_objects/schema/columns/entries_spec.rb",
      "spec/unit/data_objects/schema/columns/eql_spec.rb",
      "spec/unit/data_objects/schema/columns/equal_value_spec.rb",
      "spec/unit/data_objects/schema/columns/hash_spec.rb",
      "spec/unit/data_objects/schema/columns/initialize_spec.rb",
      "spec/unit/data_objects/schema/columns/merge_spec.rb",
+     "spec/unit/data_objects/schema/columns/to_ddl_spec.rb",
      "spec/unit/data_objects/schema/database/empty_spec.rb",
      "spec/unit/data_objects/schema/database/initialize_spec.rb",
      "spec/unit/data_objects/schema/database/name_spec.rb",
@@ -88,6 +90,7 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/tables/hash_spec.rb",
      "spec/unit/data_objects/schema/tables/initialize_spec.rb",
      "spec/unit/data_objects/schema/tables/merge_spec.rb",
+     "spec/unit/data_objects/schema/tables/to_ddl_spec.rb",
      "spec/unit/data_objects/schema/transformable/transform_spec.rb",
      "tasks/ci.rake",
      "tasks/clean.rake",
@@ -129,6 +132,7 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/columns/hash_spec.rb",
      "spec/unit/data_objects/schema/columns/initialize_spec.rb",
      "spec/unit/data_objects/schema/columns/merge_spec.rb",
+     "spec/unit/data_objects/schema/columns/to_ddl_spec.rb",
      "spec/unit/data_objects/schema/database/empty_spec.rb",
      "spec/unit/data_objects/schema/database/initialize_spec.rb",
      "spec/unit/data_objects/schema/database/name_spec.rb",
@@ -151,6 +155,7 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/tables/hash_spec.rb",
      "spec/unit/data_objects/schema/tables/initialize_spec.rb",
      "spec/unit/data_objects/schema/tables/merge_spec.rb",
+     "spec/unit/data_objects/schema/tables/to_ddl_spec.rb",
      "spec/unit/data_objects/schema/transformable/transform_spec.rb"
   ]
 
