@@ -50,7 +50,6 @@ begin
       # TODO once work on adapters start this needs to be removed
 
       excluded_modules = %w[
-        DataObjects::Schema::OrderedSet
         DataObjects::Schema::Equalizable
       ]
 
