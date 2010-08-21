@@ -11,4 +11,3 @@ describe 'DataObjects::Schema::Tables#to_ddl' do
 
 end
 
-
