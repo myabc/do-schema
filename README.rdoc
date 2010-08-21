@@ -1,13 +1,66 @@
-= do-schema
+== do-schema
 
-Description goes here.
+The goal of this project is to provide a Ruby API that allows the
+construction of, and reflection on, all databases that are supported by
+the "DataObjects"[http://github.com/datamapper/do] project.
+
+=== Status
+
+This project is in a very early development phase and not yet usable for
+anything practical.
+
+=== Currently Implemented
+
+Currently, the following API is mostly implemented. Parts that are still
+lacking are marked with a TODO comment.
+
+  uri = Addressable::URI.parse('mysql://localhost/dm_core_test')
+
+  database = DataObjects::Schema.load(uri) # TODO Not yet implemented
+
+  database.name                  # => "dm_core_test"
+  database.uri                   # => uri
+  database.tables                # => Tables.new([ Table1, Table2, ... ])
+
+  database.tables.each do |table|
+
+    # Table API
+    table                        # => Table.new('customers', [ Column1, Column2, ... ])
+    table.name                   # => "customers"
+    table.to_ddl                 # TODO Not yet implemeted
+
+    # Column API
+    table.columns                # => Columns.new([ Column1, Column2, ... ])
+    table.columns.to_ddl         # TODO Not yet implemented
+
+    table.each do |column|
+      column                     # => Column::String.new('name', :length => 0..10)
+      column.name                # => "name"
+      column.required?           # => true
+      column.default             # => "a"
+      column.to_ddl              # TODO Not yet implemented
+    end
+
+    # TODO Not yet implemented
+    # ------------------------
+    # Column subclasses will be able to add extra accessors for type
+    # specific data. For example Column::String may define #length,
+    # and Column::Decimal may define #precision and #scale
+
+  end
+
+=== TODO
+
+See the "TODO list"[http://github.com/snusnu/do-schema/blob/rewind/TODO]
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
   future version unintentionally.
+* The submitted patch must not lower any current metric thresholds.
+* To get at the current thresholds, run "bundle exec rake ci"
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
