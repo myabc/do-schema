@@ -3,12 +3,20 @@ require 'do-schema/table'
 
 describe 'DataObjects::Schema::Tables#<<' do
 
-  subject { tables << table }
+  subject { tables << table2 }
 
-  let(:table)  { DataObjects::Schema::Table.new('name') }
-  let(:tables) { DataObjects::Schema::Tables.new        }
+  let(:table1)  { DataObjects::Schema::Column.new('column1', {}) }
+  let(:table2)  { DataObjects::Schema::Column.new('column2', {}) }
 
-  its(:entries) { should include(table) }
+  let(:tables)  { DataObjects::Schema::Columns.new([table1]) }
+
+  its(:entries) { should include(table1) }
+  its(:entries) { should include(table2) }
+
+  it 'should append columns at the end of the collection' do
+    tables.entries.index(table1).should == tables.entries.length - 2
+    tables.entries.index(table2).should == tables.entries.length - 1
+  end
 
 end
 
