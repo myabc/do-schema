@@ -32,4 +32,3 @@ describe 'DataObjects::Schema::Tables#merge' do
 
 end
 
-
