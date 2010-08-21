@@ -11,12 +11,12 @@ module DataObjects::Schema
 
     extend Equalizable
 
-    attr_reader :columns
+    attr_reader :entries
 
-    equalize :columns
+    equalize :entries
 
     def initialize(columns = [])
-      @columns = OrderedSet.new
+      @entries = OrderedSet.new
       merge(columns)
     end
 
@@ -30,20 +30,20 @@ module DataObjects::Schema
     #
     # @api private
     def <<(column)
-      transform { @columns << column }
+      transform { @entries << column }
     end
 
     def merge(other)
-      transform { other.each { |entry| @columns << entry } }
+      transform { other.each { |entry| @entries << entry } }
     end
 
     def each(&block)
-      @columns.each(&block)
+      @entries.each(&block)
       self
     end
 
     def empty?
-      @columns.empty?
+      @entries.empty?
     end
 
   end

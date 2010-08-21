@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirkjan Bussink"]
-  s.date = %q{2010-08-20}
+  s.date = %q{2010-08-21}
   s.description = %q{TODO: longer description of your gem}
   s.email = %q{d.bussink@gmail.com}
   s.executables = ["autospec", "autotest", "churn", "edit_json.rb", "flay", "flog", "heckle", "jeweler", "mkspec", "mspec", "mspec-ci", "mspec-run", "mspec-tag", "multigem", "multiruby", "multiruby_setup", "parse_tree_abc", "parse_tree_audit", "parse_tree_deps", "parse_tree_show", "prettify_json.rb", "r2r_show", "rake", "rcov", "reek", "roodi", "roodi-describe", "ruby_parse", "rubyforge", "saikuro", "sow", "spec", "unit_diff", "yard-graph", "yardoc", "yardstick", "yri", "zentest"]
@@ -59,7 +59,6 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/column/required_spec.rb",
      "spec/unit/data_objects/schema/column/to_ddl_spec.rb",
      "spec/unit/data_objects/schema/columns/append_spec.rb",
-     "spec/unit/data_objects/schema/columns/columns_spec.rb",
      "spec/unit/data_objects/schema/columns/each_spec.rb",
      "spec/unit/data_objects/schema/columns/empty_spec.rb",
      "spec/unit/data_objects/schema/columns/eql_spec.rb",
@@ -83,12 +82,12 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/tables/append_spec.rb",
      "spec/unit/data_objects/schema/tables/each_spec.rb",
      "spec/unit/data_objects/schema/tables/empty_spec.rb",
+     "spec/unit/data_objects/schema/tables/entries_spec.rb",
      "spec/unit/data_objects/schema/tables/eql_spec.rb",
      "spec/unit/data_objects/schema/tables/equal_value_spec.rb",
      "spec/unit/data_objects/schema/tables/hash_spec.rb",
      "spec/unit/data_objects/schema/tables/initialize_spec.rb",
      "spec/unit/data_objects/schema/tables/merge_spec.rb",
-     "spec/unit/data_objects/schema/tables/tables_spec.rb",
      "spec/unit/data_objects/schema/transformable/transform_spec.rb",
      "tasks/ci.rake",
      "tasks/clean.rake",
@@ -122,9 +121,9 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/column/required_spec.rb",
      "spec/unit/data_objects/schema/column/to_ddl_spec.rb",
      "spec/unit/data_objects/schema/columns/append_spec.rb",
-     "spec/unit/data_objects/schema/columns/columns_spec.rb",
      "spec/unit/data_objects/schema/columns/each_spec.rb",
      "spec/unit/data_objects/schema/columns/empty_spec.rb",
+     "spec/unit/data_objects/schema/columns/entries_spec.rb",
      "spec/unit/data_objects/schema/columns/eql_spec.rb",
      "spec/unit/data_objects/schema/columns/equal_value_spec.rb",
      "spec/unit/data_objects/schema/columns/hash_spec.rb",
@@ -146,12 +145,12 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/tables/append_spec.rb",
      "spec/unit/data_objects/schema/tables/each_spec.rb",
      "spec/unit/data_objects/schema/tables/empty_spec.rb",
+     "spec/unit/data_objects/schema/tables/entries_spec.rb",
      "spec/unit/data_objects/schema/tables/eql_spec.rb",
      "spec/unit/data_objects/schema/tables/equal_value_spec.rb",
      "spec/unit/data_objects/schema/tables/hash_spec.rb",
      "spec/unit/data_objects/schema/tables/initialize_spec.rb",
      "spec/unit/data_objects/schema/tables/merge_spec.rb",
-     "spec/unit/data_objects/schema/tables/tables_spec.rb",
      "spec/unit/data_objects/schema/transformable/transform_spec.rb"
   ]
 

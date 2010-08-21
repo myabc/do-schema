@@ -11,12 +11,12 @@ module DataObjects::Schema
 
     extend Equalizable
 
-    attr_reader :tables
+    attr_reader :entries
 
-    equalize :tables
+    equalize :entries
 
     def initialize(tables = [])
-      @tables = Set.new
+      @entries = Set.new
       merge(tables)
     end
 
@@ -30,7 +30,7 @@ module DataObjects::Schema
     #
     # @api public
     def <<(table)
-      transform { @tables << table }
+      transform { @entries << table }
     end
 
     # Merge in another Tables collection
@@ -43,7 +43,7 @@ module DataObjects::Schema
     #
     # @api public
     def merge(other)
-      transform { other.each { |table| @tables << table } }
+      transform { other.each { |table| @entries << table } }
     end
 
     # Iterate over each table in the collection
@@ -59,12 +59,12 @@ module DataObjects::Schema
     #
     # @api public
     def each(&block)
-      @tables.each(&block)
+      @entries.each(&block)
       self
     end
 
     def empty?
-      @tables.empty?
+      @entries.empty?
     end
 
   end
