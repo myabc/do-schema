@@ -46,6 +46,10 @@ module DataObjects::Schema
       @entries.empty?
     end
 
+    def to_ddl
+      raise NotImplementedError
+    end
+
   end
 
   class Column
