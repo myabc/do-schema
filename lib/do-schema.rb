@@ -6,10 +6,13 @@ require 'do-schema/column'
 require 'do-schema/column/integer'
 require 'do-schema/column/string'
 
-module DataObjects::Schema
+module DataObjects
+  module Schema
 
-  def self.load(uri)
-    raise NotImplementedError
+    def self.load(uri)
+      raise NotImplementedError
+    end
+
   end
-
 end
+

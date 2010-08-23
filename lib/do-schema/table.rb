@@ -2,101 +2,104 @@ require 'do-schema/support/equalizable'
 require 'do-schema/support/transformable'
 require 'do-schema/column'
 
-module DataObjects::Schema
+module DataObjects
+  module Schema
 
-  class Tables
+    class Tables
 
-    include Enumerable
-    include Transformable
+      include Enumerable
+      include Transformable
 
-    extend Equalizable
+      extend Equalizable
 
-    attr_reader :entries
+      attr_reader :entries
 
-    equalize :entries
+      equalize :entries
 
-    def initialize(tables = [])
-      @entries = Set.new
-      merge(tables)
-    end
+      def initialize(tables = [])
+        @entries = Set.new
+        merge(tables)
+      end
 
-    # Append to the Tables collection
-    #
-    # @param [Table] table
-    #   the table to append
-    #
-    # @return [Tables]
-    #   returns self
-    #
-    # @api public
-    def <<(table)
-      transform { @entries << table }
-    end
+      # Append to the Tables collection
+      #
+      # @param [Table] table
+      #   the table to append
+      #
+      # @return [Tables]
+      #   returns self
+      #
+      # @api public
+      def <<(table)
+        transform { @entries << table }
+      end
 
-    # Merge in another Tables collection
-    #
-    # @param [#each] other
-    #   the other Tables collection
-    #
-    # @return [Tables]
-    #   returns self
-    #
-    # @api public
-    def merge(other)
-      transform { other.each { |table| @entries << table } }
-    end
+      # Merge in another Tables collection
+      #
+      # @param [#each] other
+      #   the other Tables collection
+      #
+      # @return [Tables]
+      #   returns self
+      #
+      # @api public
+      def merge(other)
+        transform { other.each { |table| @entries << table } }
+      end
 
-    # Iterate over each table in the collection
-    #
-    # @yield [entry]
-    #   yield to the entry
-    #
-    # @yieldparam [Table] table
-    #   a table in the collection
-    #
-    # @return [Tables]
-    #   returns self
-    #
-    # @api public
-    def each(&block)
-      @entries.each(&block)
-      self
-    end
+      # Iterate over each table in the collection
+      #
+      # @yield [entry]
+      #   yield to the entry
+      #
+      # @yieldparam [Table] table
+      #   a table in the collection
+      #
+      # @return [Tables]
+      #   returns self
+      #
+      # @api public
+      def each(&block)
+        @entries.each(&block)
+        self
+      end
 
-    def empty?
-      @entries.empty?
-    end
+      def empty?
+        @entries.empty?
+      end
 
-    def to_ddl
-      raise NotImplementedError
-    end
+      def to_ddl
+        raise NotImplementedError
+      end
 
-  end
+    end # class Tables
 
-  class Table
+    class Table
 
-    include Enumerable
-    extend Equalizable
+      include Enumerable
+      extend Equalizable
 
-    attr_reader :name
-    attr_reader :columns
+      attr_reader :name
+      attr_reader :columns
 
-    equalize :name, :columns
+      equalize :name, :columns
 
-    def initialize(name, columns = [])
-      @name    = name
-      @columns = Columns.new(columns)
-    end
+      def initialize(name, columns = [])
+        @name    = name
+        @columns = Columns.new(columns)
+      end
 
-    def each(&block)
-      columns.each(&block)
-      self
-    end
+      def each(&block)
+        columns.each(&block)
+        self
+      end
 
-    def to_ddl
-      raise NotImplementedError
-    end
+      def to_ddl
+        raise NotImplementedError
+      end
 
-  end
-end
+    end # class Table
+
+  end # module Schema
+end # module DataObjects
 

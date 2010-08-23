@@ -1,15 +1,18 @@
-module DataObjects::Schema
+module DataObjects
+  module Schema
 
-  module Transformable
+    module Transformable
 
-    private
+      private
 
-    def transform(&block)
-      copy = self.clone
-      copy.instance_eval(&block)
-      copy.freeze
-    end
+      def transform(&block)
+        copy = self.clone
+        copy.instance_eval(&block)
+        copy.freeze
+      end
 
-  end
-end
+    end # module Transformable
+
+  end # module Schema
+end # module DataObjects
 

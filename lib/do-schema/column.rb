@@ -2,87 +2,91 @@ require 'do-schema/support/ordered_set'
 require 'do-schema/support/equalizable'
 require 'do-schema/support/transformable'
 
-module DataObjects::Schema
+module DataObjects
+  module Schema
 
-  class Columns
+    class Columns
 
-    include Enumerable
-    include Transformable
+      include Enumerable
+      include Transformable
 
-    extend Equalizable
+      extend Equalizable
 
-    attr_reader :entries
+      attr_reader :entries
 
-    equalize :entries
+      equalize :entries
 
-    def initialize(columns = [])
-      @entries = OrderedSet.new
-      merge(columns)
-    end
+      def initialize(columns = [])
+        @entries = OrderedSet.new
+        merge(columns)
+      end
 
-    # Append to the Columns collection
-    #
-    # @param [Column] column
-    #   the column to append
-    #
-    # @return [ Columns]
-    #   returns self
-    #
-    # @api private
-    def <<(column)
-      transform { @entries << column }
-    end
+      # Append to the Columns collection
+      #
+      # @param [Column] column
+      #   the column to append
+      #
+      # @return [ Columns]
+      #   returns self
+      #
+      # @api private
+      def <<(column)
+        transform { @entries << column }
+      end
 
-    def merge(other)
-      transform { other.each { |entry| @entries << entry } }
-    end
+      def merge(other)
+        transform { other.each { |entry| @entries << entry } }
+      end
 
-    def each(&block)
-      @entries.each(&block)
-      self
-    end
+      def each(&block)
+        @entries.each(&block)
+        self
+      end
 
-    def empty?
-      @entries.empty?
-    end
+      def empty?
+        @entries.empty?
+      end
 
-    def to_ddl
-      raise NotImplementedError
-    end
+      def to_ddl
+        raise NotImplementedError
+      end
 
-  end
+    end # class Columns
 
-  class Column
+    class Column
 
-    extend Equalizable
+      extend Equalizable
 
-    attr_reader :name
-    attr_reader :options
-    attr_reader :default
+      attr_reader :name
+      attr_reader :options
+      attr_reader :default
 
-    equalize :name, :default, :required?
+      equalize :name, :default, :required?
 
-    def initialize(name, options)
-      @name     = name
-      @options  = default_options.merge(options)
-      @default  = @options[:default]
-      @required = @options[:required]
-    end
+      def initialize(name, options)
+        @name     = name
+        @options  = default_options.merge(options)
+        @default  = @options[:default]
+        @required = @options[:required]
+      end
 
-    # @api public
-    def required?
-      @required
-    end
+      # @api public
+      def required?
+        @required
+      end
 
-    # @api public
-    def to_ddl
-      raise NotImplementedError
-    end
+      # @api public
+      def to_ddl
+        raise NotImplementedError
+      end
 
-    # @api semipublic
-    def default_options
-      { :required => true }
-    end
+      # @api semipublic
+      def default_options
+        { :required => true }
+      end
 
-  end
-end
+    end # class Column
+
+  end # module Schema
+end # module DataObjects
+

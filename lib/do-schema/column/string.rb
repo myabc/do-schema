@@ -1,7 +1,12 @@
-module DataObjects::Schema
+require 'do-schema'
 
-  class String < Column
+module DataObjects
+  module Schema
 
-  end
+    class String < Column
 
-end
+    end # class String
+
+  end # module Schema
+end # module DataObjects
+
