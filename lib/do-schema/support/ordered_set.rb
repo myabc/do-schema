@@ -1,14 +1,9 @@
-require 'do-schema/support/equalizable'
+require 'do-schema/support/collection'
 
 module DataObjects
   module Schema
 
-    class OrderedSet
-
-      extend Equalizable
-      include Enumerable
-
-      equalize :entries
+    class OrderedSet < Collection
 
       # Returns the OrderedSet instance
       #
@@ -20,9 +15,8 @@ module DataObjects
       #
       # @api private
       def initialize(entries = nil)
-        @entries = []
-        @index   = {}
-        merge(entries || [])
+        @index = {}
+        super
       end
 
       # Append to the OrderedSet
@@ -35,75 +29,24 @@ module DataObjects
       #
       # @api private
       def <<(entry)
-        unless include?(entry)
-          @index[entry] = @entries.length
-          @entries << entry
+        return self if include?(entry)
+        transform do
+          @index[entry] = entries.length
+          entries << entry
         end
-        self
       end
 
-      # Merge in another OrderedSet
+      # Merge in another Collection
       #
       # @param [#each] other
-      #   the other ordered set
+      #   the other Collection
       #
-      # @return [OrderedSet]
+      # @return [Collection]
       #   returns self
       #
-      # @api private
+      # @api public
       def merge(other)
-        other.each { |entry| self << entry }
-        self
-      end
-
-      # Iterate over each entry
-      #
-      # @yield [entry]
-      #   yield to the entry
-      #
-      # @yieldparam [Object] entry
-      #   an entry in the ordered set
-      #
-      # @return [OrderedSet]
-      #   returns self
-      #
-      # @api private
-      def each(&block)
-        @entries.each(&block)
-        self
-      end
-
-      # Check if there are any entries
-      #
-      # @return [Boolean]
-      #   true if there are no entries, false if there are
-      #
-      # @api private
-      def empty?
-        @entries.empty?
-      end
-
-      # The number of entries
-      #
-      # @return [Integer]
-      #   number of entries
-      #
-      # @api private
-      def length
-        @entries.length
-      end
-
-      # Check if the entry exists in the set
-      #
-      # @param [Object] entry
-      #   the entry to test for
-      #
-      # @return [Boolean]
-      #   true if the entry exists in the set, false if not
-      #
-      # @api private
-      def include?(entry)
-        @index.key?(entry)
+        transform { other.each { |entry| self << entry } }
       end
 
       # Return the index for the entry in the set

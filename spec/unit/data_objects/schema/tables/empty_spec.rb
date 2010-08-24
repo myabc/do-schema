@@ -1,26 +1,28 @@
 require 'spec_helper'
 require 'do-schema/table'
+require 'spec/unit/data_objects/schema/collection/empty_spec'
 
 describe 'DataObjects::Schema::Tables#empty?' do
 
-  context 'with no tables in it' do
+  subject { tables.empty? }
 
-    subject { tables.empty? }
+  let(:tables) { collection }
 
-    let(:tables) { DataObjects::Schema::Tables.new }
+  context 'with no entries' do
 
-    it { should be(true) }
+    let(:collection) { DataObjects::Schema::Tables.new }
+
+    it_should_behave_like 'DataObjects::Schema::Collection#empty? with no entries in it'
 
   end
 
-  context 'with tables in it' do
+  context 'with entries' do
 
-    subject { tables.empty? }
+    let(:collection) { DataObjects::Schema::Tables.new([table])   }
+    let(:table)      { entry                                      }
+    let(:entry)      { DataObjects::Schema::Table.new('name', {}) }
 
-    let(:table)  { DataObjects::Schema::Table.new('name')    }
-    let(:tables) { DataObjects::Schema::Tables.new([table])  }
-
-    it { should be(false) }
+    it_should_behave_like 'DataObjects::Schema::Collection#empty? with entries in it'
 
   end
 

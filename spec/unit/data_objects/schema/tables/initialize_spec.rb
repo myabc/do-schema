@@ -1,30 +1,44 @@
 require 'spec_helper'
 require 'do-schema/table'
+require 'spec/unit/data_objects/schema/collection/initialize_spec'
 
-describe 'DataObjects::Schema::Tables#entries' do
+describe 'DataObjects::Schema::Tables#initialize' do
 
-  context 'with no entries' do
+  context 'when no entries are given' do
 
-    subject { tables.entries }
+    subject { DataObjects::Schema::Tables.new }
 
-    let(:tables) { DataObjects::Schema::Tables.new }
-
-    it { should be_empty }
+    it_should_behave_like 'DataObjects::Schema::Collection#initialize when no entries are given'
 
   end
 
-  context 'with entries' do
+  context 'when entries are given' do
 
-    subject { tables.entries }
+    subject { DataObjects::Schema::Tables.new(tables) }
 
-    let(:table)  { DataObjects::Schema::Table.new('name')   }
-    let(:tables) { DataObjects::Schema::Tables.new([table]) }
+    let(:tables) { [table1, table2] }
+    let(:table1) { entry1           }
+    let(:table2) { entry2           }
 
-    it { should include(table) }
+    context 'and they do not contain duplicates' do
+
+      let(:entry1)  { DataObjects::Schema::Table.new('entry1', {}) }
+      let(:entry2)  { DataObjects::Schema::Table.new('entry2', {}) }
+
+      it_should_behave_like 'DataObjects::Schema::Collection#initialize when entries are given and they do not contain duplicates'
+
+    end
+
+    context 'and they contain duplicates' do
+
+      let(:entry1)  { DataObjects::Schema::Table.new('entry1', {}) }
+      let(:entry2)  { entry1.dup                                   }
+
+      it_should_behave_like 'DataObjects::Schema::Collection#initialize when entries are given and they contain duplicates'
+
+    end
 
   end
 
 end
-
-
 

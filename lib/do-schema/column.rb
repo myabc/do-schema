@@ -1,51 +1,9 @@
 require 'do-schema/support/ordered_set'
-require 'do-schema/support/equalizable'
-require 'do-schema/support/transformable'
 
 module DataObjects
   module Schema
 
-    class Columns
-
-      include Enumerable
-      include Transformable
-
-      extend Equalizable
-
-      attr_reader :entries
-
-      equalize :entries
-
-      def initialize(columns = [])
-        @entries = OrderedSet.new
-        merge(columns)
-      end
-
-      # Append to the Columns collection
-      #
-      # @param [Column] column
-      #   the column to append
-      #
-      # @return [ Columns]
-      #   returns self
-      #
-      # @api private
-      def <<(column)
-        transform { @entries << column }
-      end
-
-      def merge(other)
-        transform { other.each { |entry| @entries << entry } }
-      end
-
-      def each(&block)
-        @entries.each(&block)
-        self
-      end
-
-      def empty?
-        @entries.empty?
-      end
+    class Columns < OrderedSet
 
       def to_ddl
         raise NotImplementedError

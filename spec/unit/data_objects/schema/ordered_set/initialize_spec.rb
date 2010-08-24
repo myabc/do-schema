@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
+require 'spec/unit/data_objects/schema/ordered_set/shared/initialize_spec'
 
 describe 'DataObjects::Schema::OrderedSet#initialize' do
 
@@ -7,9 +8,7 @@ describe 'DataObjects::Schema::OrderedSet#initialize' do
 
     subject { DataObjects::Schema::OrderedSet.new }
 
-    it { should be_empty }
-
-    its(:length) { should == 0 }
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#initialize when no entries are given'
 
   end
 
@@ -19,31 +18,23 @@ describe 'DataObjects::Schema::OrderedSet#initialize' do
 
     context 'and they do not contain duplicates' do
 
-      let(:entries) { [2,1] }
+      let(:entries) { [entry1, entry2] }
 
-      it { should_not be_empty }
-      it { should include(1)   }
-      it { should include(2)   }
+      let(:entry1)  { 1                }
+      let(:entry2)  { 2                }
 
-      its(:length)  { should ==   2   }
-      its(:entries) { should == [2,1] }
-
-      it 'should retain insertion order' do
-        subject.index(1).should == 1
-        subject.index(2).should == 0
-      end
+      it_should_behave_like 'DataObjects::Schema::OrderedSet#initialize when entries are given and they do not contain duplicates'
 
     end
 
     context 'and they contain duplicates' do
 
-      let(:entries) { [1,1] }
+      let(:entries) { [entry1, entry2] }
 
-      it { should_not be_empty }
-      it { should include(1)   }
+      let(:entry1)  { 1                }
+      let(:entry2)  { 1                }
 
-      its(:length)  { should ==  1  }
-      its(:entries) { should == [1] }
+      it_should_behave_like 'DataObjects::Schema::OrderedSet#initialize when entries are given and they contain duplicates'
 
     end
 

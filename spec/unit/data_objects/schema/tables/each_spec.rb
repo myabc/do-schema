@@ -1,29 +1,27 @@
 require 'spec_helper'
 require 'do-schema/table'
+require 'spec/unit/data_objects/schema/collection/each_spec'
 
 describe 'DataObjects::Schema::Tables' do
 
   subject { DataObjects::Schema::Tables.new }
 
-  it { should be_kind_of(Enumerable) }
+  it_should_behave_like 'DataObjects::Schema::Collection'
 
-  it 'case matches Enumerable' do
-    (Enumerable === subject).should be(true)
-  end
 end
 
 describe 'DataObjects::Schema::Tables#each' do
 
-  subject { tables.each { |table| yields << table } }
+  subject { tables.each { |entry| yields << entry } }
 
-  let(:tables) { DataObjects::Schema::Tables.new([table]) }
-  let(:table)  { DataObjects::Schema::Table.new('name')   }
-  let(:yields) { []                                       }
+  let(:tables)     { collection                               }
 
-  it { should equal(tables) }
+  let(:collection) { DataObjects::Schema::Tables.new([table]) }
+  let(:table)      { entry                                    }
+  let(:entry)      { DataObjects::Schema::Table.new('name')   }
+  let(:yields)     { []                                       }
 
-  it 'yields each table' do
-    expect { subject }.to change { yields.dup }.from([]).to([table])
-  end
+  it_should_behave_like 'DataObjects::Schema::Collection#each'
+
 end
 

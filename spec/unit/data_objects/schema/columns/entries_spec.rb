@@ -1,29 +1,29 @@
 require 'spec_helper'
 require 'do-schema/column'
+require 'spec/unit/data_objects/schema/collection/entries_spec'
 
 describe 'DataObjects::Schema::Columns#entries' do
 
+  subject { columns.entries }
+
+  let(:columns) { collection }
+
   context 'with no entries' do
 
-    subject { columns.entries }
+    let(:collection) { DataObjects::Schema::Columns.new }
 
-    let(:columns) { DataObjects::Schema::Columns.new }
-
-    it { should be_empty }
+    it_should_behave_like 'DataObjects::Schema::Collection#entries with no entries'
 
   end
 
   context 'with entries' do
 
-    subject { columns.entries }
+    let(:entry)      { DataObjects::Schema::Column.new('name', {}) }
+    let(:collection) { DataObjects::Schema::Columns.new([entry])   }
 
-    let(:column)  { DataObjects::Schema::Column.new('name', {}) }
-    let(:columns) { DataObjects::Schema::Columns.new([column])  }
-
-    it { should include(column) }
+    it_should_behave_like 'DataObjects::Schema::Collection#entries with entries'
 
   end
 
 end
-
 

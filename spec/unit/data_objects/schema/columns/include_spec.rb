@@ -1,17 +1,18 @@
 require 'spec_helper'
-require 'do-schema/support/ordered_set'
+require 'do-schema/column'
 require 'spec/unit/data_objects/schema/collection/include_spec'
 
-describe 'DataObjects::Schema::OrderedSet#include?' do
+describe 'DataObjects::Schema::Columns#include?' do
 
-  subject { ordered_set.include?(entry) }
+  subject { columns.include?(column) }
 
-  let(:ordered_set) { collection }
+  let(:columns) { collection }
+  let(:column)  { entry      }
+  let(:entry)   { DataObjects::Schema::Column.new('name', {}) }
 
   context 'when the entry is present' do
 
-    let(:entry)      { 1 }
-    let(:collection) { DataObjects::Schema::OrderedSet.new([entry]) }
+    let(:collection) { DataObjects::Schema::Columns.new([entry]) }
 
     it_should_behave_like 'DataObjects::Schema::Collection#include? when the entry is present'
 
@@ -19,8 +20,7 @@ describe 'DataObjects::Schema::OrderedSet#include?' do
 
   context 'when the entry is not present' do
 
-    let(:entry)      { 1 }
-    let(:collection) { DataObjects::Schema::OrderedSet.new }
+    let(:collection) { DataObjects::Schema::Columns.new }
 
     it_should_behave_like 'DataObjects::Schema::Collection#include? when the entry is not present'
 

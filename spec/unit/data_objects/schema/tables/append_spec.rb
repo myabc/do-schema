@@ -1,36 +1,29 @@
 require 'spec_helper'
 require 'do-schema/table'
+require 'spec/unit/data_objects/schema/collection/append_spec'
 
 describe 'DataObjects::Schema::Tables#<<' do
 
-  subject { tables << table2 }
+  subject { tables << entry2 }
 
-  let(:table1)  { DataObjects::Schema::Table.new('table1')  }
-  let(:tables)  { DataObjects::Schema::Tables.new([table1]) }
+  let(:tables)     { collection                                }
+
+  let(:entry1)     { DataObjects::Schema::Table.new('table1')  }
+  let(:collection) { DataObjects::Schema::Tables.new([entry1]) }
 
   context 'when appending a not yet present table' do
 
-    let(:table2)  { DataObjects::Schema::Table.new('table2') }
+    let(:entry2)  { DataObjects::Schema::Table.new('table2') }
 
-    its(:entries) { should include(table1) }
-    its(:entries) { should include(table2) }
-
-    it 'adds one table to the collection' do
-      expect { subject }.to change { tables.entries.count }.from(1).to(2)
-    end
+    it_should_behave_like 'DataObjects::Schema::Collection#<< when appending a not yet included entry'
 
   end
 
   context 'when appending an already present table' do
 
-    let(:table2)  { table1.dup }
+    let(:entry2)  { entry1.dup }
 
-    its(:entries) { should include(table1) }
-    its(:entries) { should include(table2) }
-
-    it 'does not add a table to the collection' do
-      expect { subject }.to_not change { tables.entries.count }
-    end
+    it_should_behave_like 'DataObjects::Schema::Collection#<< when appending an already included entry'
 
   end
 

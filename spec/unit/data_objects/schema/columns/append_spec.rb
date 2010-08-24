@@ -1,49 +1,29 @@
 require 'spec_helper'
 require 'do-schema/column'
+require 'spec/unit/data_objects/schema/ordered_set/shared/append_spec'
 
 describe 'DataObjects::Schema::Columns#<<' do
 
-  subject { columns << column2 }
+  subject { columns << entry2 }
 
-  let(:column1)  { DataObjects::Schema::Column.new('column1', {}) }
-  let(:columns)  { DataObjects::Schema::Columns.new([column1]) }
+  let(:columns)    { collection                                     }
 
-  context 'when appending a not yet present column' do
+  let(:collection) { DataObjects::Schema::Columns.new([entry1])     }
+  let(:entry1)     { DataObjects::Schema::Column.new('column1', {}) }
 
-    let(:column2)  { DataObjects::Schema::Column.new('column2', {}) }
+  context 'when appending a not yet included column' do
 
-    its(:entries) { should include(column1) }
-    its(:entries) { should include(column2) }
+    let(:entry2) { DataObjects::Schema::Column.new('column2', {}) }
 
-    it 'should not alter the position of the already existing column' do
-      subject.entries.index(column1).should == columns.entries.length - 2
-    end
-
-    it 'should append columns at the end of the collection' do
-      subject.entries.index(column2).should == columns.entries.length - 1
-    end
-
-    it 'adds one table to the collection' do
-      expect { subject }.to change { columns.entries.count }.from(1).to(2)
-    end
-
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#<< when appending a not yet included entry'
 
   end
 
-  context 'when appending an already present column' do
+  context 'when appending an already included column' do
 
-    let(:column2)  { column1.dup }
+    let(:entry2)  { entry1.dup }
 
-    its(:entries) { should include(column1) }
-    its(:entries) { should include(column2) }
-
-    it 'should not alter the position of the already existing column' do
-      subject.entries.index(column1).should == columns.entries.length - 1
-    end
-
-    it 'does not add a table to the collection' do
-      expect { subject }.to_not change { columns.entries.count }
-    end
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#<< when appending an already included entry'
 
   end
 

@@ -1,26 +1,27 @@
 require 'spec_helper'
 require 'do-schema/column'
+require 'spec/unit/data_objects/schema/collection/empty_spec'
 
 describe 'DataObjects::Schema::Columns#empty?' do
 
-  context 'with no columns in it' do
+  subject { columns.empty? }
 
-    subject { columns.empty? }
+  let(:columns) { collection }
 
-    let(:columns) { DataObjects::Schema::Columns.new }
+  context 'with no entries' do
 
-    it { should be(true) }
+    let(:collection) { DataObjects::Schema::Columns.new }
+
+    it_should_behave_like 'DataObjects::Schema::Collection#empty? with no entries in it'
 
   end
 
-  context 'with columns in it' do
+  context 'with entries' do
 
-    subject { columns.empty? }
+    let(:entry)      { DataObjects::Schema::Column.new('name', {}) }
+    let(:collection) { DataObjects::Schema::Columns.new([entry] )  }
 
-    let(:column)  { DataObjects::Schema::Column.new('name', {}) }
-    let(:columns) { DataObjects::Schema::Columns.new([column])  }
-
-    it { should be(false) }
+    it_should_behave_like 'DataObjects::Schema::Collection#empty? with entries in it'
 
   end
 

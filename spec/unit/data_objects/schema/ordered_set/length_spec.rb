@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
+require 'spec/unit/data_objects/schema/collection/length_spec'
 
 describe 'DataObjects::Schema::OrderedSet#length' do
 
@@ -9,7 +10,7 @@ describe 'DataObjects::Schema::OrderedSet#length' do
 
     let(:ordered_set) { DataObjects::Schema::OrderedSet.new }
 
-    it { should == 0 }
+    it_should_behave_like 'DataObjects::Schema::Collection#length when no entry is present'
 
   end
 
@@ -17,15 +18,17 @@ describe 'DataObjects::Schema::OrderedSet#length' do
 
     let(:ordered_set) { DataObjects::Schema::OrderedSet.new([1]) }
 
-    it { should == 1 }
+    it_should_behave_like 'DataObjects::Schema::Collection#length when 1 entry is present'
 
   end
 
   context 'when more than 1 entry is present' do
 
-    let(:ordered_set) { DataObjects::Schema::OrderedSet.new([1,2]) }
+    let(:ordered_set)     { DataObjects::Schema::OrderedSet.new(entries) }
+    let(:entries)         { [1,2]                                        }
+    let(:expected_length) { entries.length                               }
 
-    it { should == 2 }
+    it_should_behave_like 'DataObjects::Schema::Collection#length when more than 1 entry is present'
 
   end
 

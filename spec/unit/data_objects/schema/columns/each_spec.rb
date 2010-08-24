@@ -1,30 +1,26 @@
 require 'spec_helper'
 require 'do-schema/column'
+require 'spec/unit/data_objects/schema/ordered_set/shared/each_spec'
 
 describe 'DataObjects::Schema::Columns' do
 
   subject { DataObjects::Schema::Columns.new }
 
-  it { should be_kind_of(Enumerable) }
+  it_should_behave_like 'DataObjects::Schema::OrderedSet'
 
-  it 'case matches Enumerable' do
-    (Enumerable === subject).should be(true)
-  end
 end
 
 describe 'DataObjects::Schema::Columns#each' do
 
-  subject { columns.each { |column| yields << column } }
+  subject { columns.each { |entry| yields << entry } }
 
-  let(:columns) { DataObjects::Schema::Columns.new([column])  }
-  let(:column)  { DataObjects::Schema::Column.new('name', {}) }
-  let(:yields)  { []                                          }
+  let(:columns)    { collection }
 
-  it { should equal(columns) }
+  let(:collection) { DataObjects::Schema::Columns.new([entry])   }
+  let(:entry)      { DataObjects::Schema::Column.new('name', {}) }
+  let(:yields)     { []                                          }
 
-  it 'yields each column' do
-    expect { subject }.to change { yields.dup }.from([]).to([column])
-  end
+  it_should_behave_like 'DataObjects::Schema::OrderedSet#each'
+
 end
-
 
