@@ -4,12 +4,7 @@ module DataObjects
   module Schema
 
     class Columns < OrderedSet
-
-      def to_ddl
-        raise NotImplementedError
-      end
-
-    end # class Columns
+    end
 
     class Column
 
@@ -31,11 +26,6 @@ module DataObjects
       # @api public
       def required?
         @required
-      end
-
-      # @api public
-      def to_ddl
-        raise NotImplementedError
       end
 
       # @api semipublic

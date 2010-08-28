@@ -5,12 +5,7 @@ module DataObjects
   module Schema
 
     class Tables < Collection
-
-      def to_ddl
-        raise NotImplementedError
-      end
-
-    end # class Tables
+    end
 
     class Table
 
@@ -30,10 +25,6 @@ module DataObjects
       def each(&block)
         columns.each(&block)
         self
-      end
-
-      def to_ddl
-        raise NotImplementedError
       end
 
     end # class Table

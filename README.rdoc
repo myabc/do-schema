@@ -27,18 +27,15 @@ lacking are marked with a TODO comment.
     # Table API
     table                        # => Table.new('customers', [ Column1, Column2, ... ])
     table.name                   # => "customers"
-    table.to_ddl                 # TODO Not yet implemeted
 
     # Column API
     table.columns                # => Columns.new([ Column1, Column2, ... ])
-    table.columns.to_ddl         # TODO Not yet implemented
 
     table.each do |column|
       column                     # => Column::String.new('name', :length => 0..10)
       column.name                # => "name"
       column.required?           # => true
       column.default             # => "a"
-      column.to_ddl              # TODO Not yet implemented
     end
 
     # TODO Not yet implemented

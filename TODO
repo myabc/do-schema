@@ -35,18 +35,15 @@ database.tables.each do |table|
   # Table API
   table                        # => Table.new('customers', [ Column1, Column2, ... ], :indexes => indexes)
   table.name                   # => "customers"
-  table.to_ddl                 # => CREATE TABLE customers (id INT(10) UNSIGNED NOT NULL, name CHAR(10) NOT NULL DEFAULT 'a', PRIMARY KEY(id))
 
   # Column API
   table.columns                # => Columns.new([ Column1, Column2, ... ])
-  table.columns.to_ddl         # => "id INT(10) UNSIGNED NOT NULL, name CHAR(10) NOT NULL DEFAULT 'a'"
 
   table.each do |column|
     column                     # => Column::String.new('name', :length => 0..10)
     column.name                # => "name"
     column.required?           # => true
     column.default             # => "a"
-    column.to_ddl              # => "name CHAR(10) NOT NULL DEFAULT 'a'"
 
     # NOTE: Column subclasses will be able to add extra accessors for type
     #       specific data. For example Column::String may define #length,
@@ -57,35 +54,29 @@ database.tables.each do |table|
   table.primary_key            # => PrimaryKey.new(name, [ Column1, Column2, ... ])
   table.primary_key.columns    # => Columns.new([ Column1, Column2, ... ])
   table.primary_key.unique?    # => true
-  table.primary_key.to_ddl     # => "PRIMARY KEY(id)"
 
   # Index API
   table.indexes                # => Indexes.new([ Index1, Index2, ... ])
-  table.indexes.to_ddl         # => "KEY index_name1 (column_name1), KEY index_name2 (column_name2)"
 
   table.indexes.each do |index|
     index                      # => Index.new('index_name', [ Column1, Column2, ... ])
     index.name                 # => "index_name"
     index.unique?              # => false
     index.columns              # => Columns.new([ Column1, Column2, ... ])
-    index.to_ddl               # => "KEY index_name (column_name)"
   end
 
   # Unique Index API
   table.unique_indexes         # => UniqueIndexes.new([ UniqueIndex1, UniqueIndex1, ... ])
-  table.unique_indexes.to_ddl  # => "UNIQUE unique_name1 (column_name1), UNIQUE unique_name2 (column_name2)"
 
   table.unique_indexes.each do |unique_index|
     unique_index               # => UniqueIndex.new('unique_name', [ Column1, Column2, ... ])
     unique_index.name          # => "unique_name"
     unique_index.unique?       # => true
     unique_index.columns       # => Columns.new([ Column1, Column2, ... ])
-    unique_index.to_ddl        # => "UNIQUE unique_name (column_name)"
   end
 
   # Foreign Key API
   table.foreign_keys           # => ForeignKeys.new([ ForeignKey1, ForeignKey2, ... ])
-  table.foreign_keys.to_ddl    # => "FOREIGN KEY (parent_id) REFERENCES parent (id), FOREIGN KEY (other_id) REFERENCES other (id)"
 
   table.foreign_keys.each do |foreign_key|
     foreign_key                # => ForeignKey.new('foreign_key_name', [ Column1, Column2, ... ], reference, :on_delete => :restrict, :on_update => :restrict)
@@ -94,7 +85,6 @@ database.tables.each do |table|
     foreign_key.reference      # => Reference.new(other_table, other_table.primary_key)
     foreign_key.on_delete      # => :restrict
     foreign_key.on_update      # => nil
-    foreign_key.to_ddl         # => "FOREIGN KEY foreign_key_name (other_id) REFERENCES others (id)"
   end
 
 end
