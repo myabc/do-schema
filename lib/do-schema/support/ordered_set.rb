@@ -62,6 +62,18 @@ module DataObjects
         @index[entry]
       end
 
+      # Check if the entry exists in the OrderedSet
+      #
+      # @param [Object] entry
+      #   the entry to test for
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      def include?(entry)
+        @index.has_key?(entry)
+      end
+
     end # class OrderedSet
 
   end # module Schema
