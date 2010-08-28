@@ -31,7 +31,7 @@ module DataObjects
       def <<(entry)
         return self if include?(entry)
         transform do
-          @index[entry] = entries.length
+          @index[entry] = length
           entries << entry
         end
       end
