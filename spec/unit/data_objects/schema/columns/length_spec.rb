@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/column'
-require 'spec/unit/data_objects/schema/collection/length_spec'
+require 'spec/unit/data_objects/schema/set/length_spec'
 
 describe 'DataObjects::Schema::Columns#length' do
 
@@ -10,7 +10,7 @@ describe 'DataObjects::Schema::Columns#length' do
 
     let(:columns) { DataObjects::Schema::Columns.new              }
 
-    it_should_behave_like 'DataObjects::Schema::Collection#length when no entry is present'
+    it_should_behave_like 'DataObjects::Schema::Set#length when no entry is present'
 
   end
 
@@ -20,7 +20,7 @@ describe 'DataObjects::Schema::Columns#length' do
 
     let(:entry)   { DataObjects::Schema::Column.new('column', {}) }
 
-    it_should_behave_like 'DataObjects::Schema::Collection#length when 1 entry is present'
+    it_should_behave_like 'DataObjects::Schema::Set#length when 1 entry is present'
 
   end
 
@@ -35,7 +35,7 @@ describe 'DataObjects::Schema::Columns#length' do
 
     let(:expected_length) { entries.length                         }
 
-    it_should_behave_like 'DataObjects::Schema::Collection#length when more than 1 entry is present'
+    it_should_behave_like 'DataObjects::Schema::Set#length when more than 1 entry is present'
 
   end
 

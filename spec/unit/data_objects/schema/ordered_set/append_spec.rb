@@ -4,14 +4,14 @@ require 'spec/unit/data_objects/schema/ordered_set/shared/append_spec'
 
 describe 'DataObjects::Schema::OrderedSet#<<' do
 
-  subject { collection << entry2 }
+  subject { set << entry2 }
 
-  let(:entry1)     { 1                                             }
-  let(:collection) { DataObjects::Schema::OrderedSet.new([entry1]) }
+  let(:entry1) { 1                                             }
+  let(:set)    { DataObjects::Schema::OrderedSet.new([entry1]) }
 
   context 'when appending an already included entry' do
 
-    let(:entry2)  { 1 }
+    let(:entry2) { 1 }
 
     it_should_behave_like 'DataObjects::Schema::OrderedSet#<< when appending an already included entry'
 
@@ -19,7 +19,7 @@ describe 'DataObjects::Schema::OrderedSet#<<' do
 
   context 'when appending a not yet included entry' do
 
-    let(:entry2)  { 2 }
+    let(:entry2) { 2 }
 
     it_should_behave_like 'DataObjects::Schema::OrderedSet#<< when appending a not yet included entry'
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/collection/initialize_spec'
+require 'spec/unit/data_objects/schema/set/initialize_spec'
 
 describe 'DataObjects::Schema::Tables#initialize' do
 
@@ -8,7 +8,7 @@ describe 'DataObjects::Schema::Tables#initialize' do
 
     subject { DataObjects::Schema::Tables.new }
 
-    it_should_behave_like 'DataObjects::Schema::Collection#initialize when no entries are given'
+    it_should_behave_like 'DataObjects::Schema::Set#initialize when no entries are given'
 
   end
 
@@ -25,7 +25,7 @@ describe 'DataObjects::Schema::Tables#initialize' do
       let(:entry1)  { DataObjects::Schema::Table.new('entry1', {}) }
       let(:entry2)  { DataObjects::Schema::Table.new('entry2', {}) }
 
-      it_should_behave_like 'DataObjects::Schema::Collection#initialize when entries are given and they do not contain duplicates'
+      it_should_behave_like 'DataObjects::Schema::Set#initialize when entries are given and they do not contain duplicates'
 
     end
 
@@ -34,7 +34,7 @@ describe 'DataObjects::Schema::Tables#initialize' do
       let(:entry1)  { DataObjects::Schema::Table.new('entry1', {}) }
       let(:entry2)  { entry1.dup                                   }
 
-      it_should_behave_like 'DataObjects::Schema::Collection#initialize when entries are given and they contain duplicates'
+      it_should_behave_like 'DataObjects::Schema::Set#initialize when entries are given and they contain duplicates'
 
     end
 

@@ -1,19 +1,19 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/collection/each_spec'
+require 'spec/unit/data_objects/schema/set/each_spec'
 
 shared_examples_for 'DataObjects::Schema::OrderedSet' do
 
-  it_should_behave_like 'DataObjects::Schema::Collection'
+  it_should_behave_like 'DataObjects::Schema::Set'
 
 end
 
 shared_examples_for 'DataObjects::Schema::OrderedSet#each' do
 
-  let(:entry)      { 1                                            }
-  let(:collection) { DataObjects::Schema::OrderedSet.new([entry]) }
+  let(:set)   { DataObjects::Schema::OrderedSet.new([entry]) }
+  let(:entry) { 1                                            }
 
-  it_should_behave_like 'DataObjects::Schema::Collection#each'
+  it_should_behave_like 'DataObjects::Schema::Set#each'
 
 end
 

@@ -6,8 +6,8 @@ describe 'DataObjects::Schema::OrderedSet#index' do
 
   context 'when the entry is not present' do
 
-    let(:entry)       { 1 }
     let(:ordered_set) { DataObjects::Schema::OrderedSet.new }
+    let(:entry)       { 1                                   }
 
     it_should_behave_like 'DataObjects::Schema::OrderedSet#index when the entry is not present'
 
@@ -15,8 +15,8 @@ describe 'DataObjects::Schema::OrderedSet#index' do
 
   context 'when 1 entry is present' do
 
-    let(:entry)       { 1 }
     let(:ordered_set) { DataObjects::Schema::OrderedSet.new([entry]) }
+    let(:entry)       { 1                                            }
 
     it_should_behave_like 'DataObjects::Schema::OrderedSet#index when 1 entry is present'
 
@@ -24,8 +24,8 @@ describe 'DataObjects::Schema::OrderedSet#index' do
 
   context 'when 2 entries are present' do
 
-    let(:entry)       { 1 }
     let(:ordered_set) { DataObjects::Schema::OrderedSet.new([2,entry]) }
+    let(:entry)       { 1                                              }
 
     it_should_behave_like 'DataObjects::Schema::OrderedSet#index when 2 entries are present'
 

@@ -1,28 +1,28 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/collection/entries_spec'
+require 'spec/unit/data_objects/schema/set/entries_spec'
 
 describe 'DataObjects::Schema::Tables#entries' do
 
   subject { tables.entries }
 
-  let(:tables) { collection }
+  let(:tables) { set }
 
   context 'with no entries' do
 
-    let(:collection) { DataObjects::Schema::Tables.new }
+    let(:set) { DataObjects::Schema::Tables.new }
 
-    it_should_behave_like 'DataObjects::Schema::Collection#entries with no entries'
+    it_should_behave_like 'DataObjects::Schema::Set#entries with no entries'
 
   end
 
   context 'with entries' do
 
-    let(:collection) { DataObjects::Schema::Tables.new([table]) }
-    let(:table)      { entry                                    }
-    let(:entry)      { DataObjects::Schema::Table.new('name')   }
+    let(:set)   { DataObjects::Schema::Tables.new([table]) }
+    let(:table) { entry                                    }
+    let(:entry) { DataObjects::Schema::Table.new('name')   }
 
-    it_should_behave_like 'DataObjects::Schema::Collection#entries with entries'
+    it_should_behave_like 'DataObjects::Schema::Set#entries with entries'
 
   end
 

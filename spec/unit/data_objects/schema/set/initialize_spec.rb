@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples_for 'DataObjects::Schema::Collection#initialize when no entries are given' do
+shared_examples_for 'DataObjects::Schema::Set#initialize when no entries are given' do
 
   it { should be_empty }
 
@@ -9,7 +9,7 @@ shared_examples_for 'DataObjects::Schema::Collection#initialize when no entries 
 
 end
 
-shared_examples_for 'DataObjects::Schema::Collection#initialize when entries are given and they do not contain duplicates' do
+shared_examples_for 'DataObjects::Schema::Set#initialize when entries are given and they do not contain duplicates' do
 
   it { should_not be_empty    }
   it { should include(entry1) }
@@ -19,7 +19,7 @@ shared_examples_for 'DataObjects::Schema::Collection#initialize when entries are
 
 end
 
-shared_examples_for 'DataObjects::Schema::Collection#initialize when entries are given and they contain duplicates' do
+shared_examples_for 'DataObjects::Schema::Set#initialize when entries are given and they contain duplicates' do
 
   it { should_not be_empty    }
   it { should include(entry1) }

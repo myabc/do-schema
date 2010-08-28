@@ -1,10 +1,10 @@
-require 'do-schema/support/collection'
+require 'do-schema/support/set'
 require 'do-schema/column'
 
 module DataObjects
   module Schema
 
-    class Tables < Collection
+    class Tables < Schema::Set
     end
 
     class Table

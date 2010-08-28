@@ -14,11 +14,11 @@ describe 'DataObjects::Schema::Columns#each' do
 
   subject { columns.each { |entry| yields << entry } }
 
-  let(:columns)    { collection }
+  let(:columns) { set                                         }
 
-  let(:collection) { DataObjects::Schema::Columns.new([entry])   }
-  let(:entry)      { DataObjects::Schema::Column.new('name', {}) }
-  let(:yields)     { []                                          }
+  let(:set)     { DataObjects::Schema::Columns.new([entry])   }
+  let(:entry)   { DataObjects::Schema::Column.new('name', {}) }
+  let(:yields)  { []                                          }
 
   it_should_behave_like 'DataObjects::Schema::OrderedSet#each'
 

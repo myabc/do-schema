@@ -5,7 +5,7 @@ require 'do-schema/support/equalizable'
 module DataObjects
   module Schema
 
-    class Collection
+    class Set
 
       include Enumerable
       include Transformable
@@ -17,7 +17,7 @@ module DataObjects
       equalize :entries
 
       def initialize(entries = nil)
-        @entries = Set.new
+        @entries = ::Set.new
         merge(entries || [])
       end
 
@@ -47,13 +47,13 @@ module DataObjects
         transform { other.each { |entry| entries << entry } }
       end
 
-      # Iterate over each entry in the collection
+      # Iterate over each entry in the set
       #
       # @yield [entry]
       #   yield to the entry
       #
       # @yieldparam [Object] entry
-      #   an entry in the collection
+      #   an entry in the set
       #
       # @return [Collection]
       #   returns self
@@ -83,7 +83,7 @@ module DataObjects
         entries.length
       end
 
-      # Check if the entry exists in the collection
+      # Check if the entry exists in the set
       #
       # @param [Object] entry
       #   the entry to test for

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples_for 'DataObjects::Schema::Collection' do
+shared_examples_for 'DataObjects::Schema::Set' do
 
   it { should be_kind_of(Enumerable) }
 
@@ -10,9 +10,9 @@ shared_examples_for 'DataObjects::Schema::Collection' do
 
 end
 
-shared_examples_for 'DataObjects::Schema::Collection#each' do
+shared_examples_for 'DataObjects::Schema::Set#each' do
 
-  it { should equal(collection) }
+  it { should equal(set) }
 
   it 'yields each column' do
     expect { subject }.to change { yields.dup }.from([]).to([entry])

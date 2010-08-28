@@ -24,7 +24,7 @@ describe 'DataObjects::Schema::Database#initialize' do
 
   end
 
-  context 'when an empty collection of tables are given' do
+  context 'when an empty set of tables are given' do
 
     subject { DataObjects::Schema::Database.new(name, uri, []) }
 
@@ -34,7 +34,7 @@ describe 'DataObjects::Schema::Database#initialize' do
 
   end
 
-  context 'when a non empty collection of tables are given' do
+  context 'when a non empty set of tables are given' do
 
     subject { DataObjects::Schema::Database.new(name, uri, tables) }
 

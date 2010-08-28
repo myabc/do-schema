@@ -1,9 +1,9 @@
-require 'do-schema/support/collection'
+require 'do-schema/support/set'
 
 module DataObjects
   module Schema
 
-    class OrderedSet < Collection
+    class OrderedSet < Schema::Set
 
       # Returns the OrderedSet instance
       #

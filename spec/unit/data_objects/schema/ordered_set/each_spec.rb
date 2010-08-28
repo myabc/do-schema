@@ -12,11 +12,11 @@ end
 
 describe 'DataObjects::Schema::OrderedSet#each' do
 
-  subject { collection.each { |entry| yields << entry } }
+  subject { set.each { |entry| yields << entry } }
 
-  let(:collection) { DataObjects::Schema::OrderedSet.new([entry]) }
-  let(:entry)      { 1                                            }
-  let(:yields)     { []                                           }
+  let(:set)    { DataObjects::Schema::OrderedSet.new([entry]) }
+  let(:entry)  { 1                                            }
+  let(:yields) { []                                           }
 
   it_should_behave_like 'DataObjects::Schema::OrderedSet#each'
 

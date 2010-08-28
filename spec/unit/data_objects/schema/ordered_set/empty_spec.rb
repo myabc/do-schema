@@ -1,25 +1,25 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/collection/empty_spec'
+require 'spec/unit/data_objects/schema/set/empty_spec'
 
 describe 'DataObjects::Schema::OrderedSet#empty?' do
 
-  subject { collection.empty? }
+  subject { set.empty? }
 
   context 'with no entries in it' do
 
-    let(:collection) { DataObjects::Schema::OrderedSet.new }
+    let(:set) { DataObjects::Schema::OrderedSet.new }
 
-    it_should_behave_like 'DataObjects::Schema::Collection#empty? with no entries in it'
+    it_should_behave_like 'DataObjects::Schema::Set#empty? with no entries in it'
 
   end
 
   context 'with entries in it' do
 
-    let(:entry)      { 1                                            }
-    let(:collection) { DataObjects::Schema::OrderedSet.new([entry]) }
+    let(:set)   { DataObjects::Schema::OrderedSet.new([entry]) }
+    let(:entry) { 1                                            }
 
-    it_should_behave_like 'DataObjects::Schema::Collection#empty? with entries in it'
+    it_should_behave_like 'DataObjects::Schema::Set#empty? with entries in it'
   end
 
 end

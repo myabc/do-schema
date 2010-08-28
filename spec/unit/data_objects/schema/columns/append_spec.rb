@@ -6,10 +6,10 @@ describe 'DataObjects::Schema::Columns#<<' do
 
   subject { columns << entry2 }
 
-  let(:columns)    { collection                                     }
+  let(:columns) { set                                            }
 
-  let(:collection) { DataObjects::Schema::Columns.new([entry1])     }
-  let(:entry1)     { DataObjects::Schema::Column.new('column1', {}) }
+  let(:set)     { DataObjects::Schema::Columns.new([entry1])     }
+  let(:entry1)  { DataObjects::Schema::Column.new('column1', {}) }
 
   context 'when appending a not yet included column' do
 
