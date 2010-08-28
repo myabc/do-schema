@@ -10,9 +10,6 @@ end
 
 shared_examples_for 'DataObjects::Schema::OrderedSet#each' do
 
-  let(:set)   { DataObjects::Schema::OrderedSet.new([entry]) }
-  let(:entry) { 1                                            }
-
   it_should_behave_like 'DataObjects::Schema::Set#each'
 
 end

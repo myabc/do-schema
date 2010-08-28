@@ -4,6 +4,8 @@ require 'spec/unit/data_objects/schema/ordered_set/shared/index_spec'
 
 describe 'DataObjects::Schema::OrderedSet#index' do
 
+  subject { ordered_set.index(entry) }
+
   context 'when the entry is not present' do
 
     let(:ordered_set) { DataObjects::Schema::OrderedSet.new }
