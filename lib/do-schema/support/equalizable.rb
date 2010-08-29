@@ -32,7 +32,13 @@ module DataObjects
         equivalent = []
 
         methods.each do |method|
-          respond_to << "other.respond_to?(#{method.inspect})"
+
+          # This is not necessary when relying on #kind_of? already
+          # If we decide to rely on duck typing only, this code must
+          # be readded
+          #
+          # respond_to << "other.respond_to?(#{method.inspect})"
+
           equivalent << "#{method} == other.#{method}"
         end
 
@@ -50,7 +56,7 @@ module DataObjects
             # This is not necessary when relying on #kind_of? already
             # If we decide to rely on duck typing only, this code must
             # be readded
-
+            #
             # #{respond_to.join(' && ')} &&
 
             #{equivalent.join(' && ')}
