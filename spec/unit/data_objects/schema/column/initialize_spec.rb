@@ -20,7 +20,6 @@ describe 'DataObjects::Schema::Column#initialize' do
     it_should_behave_like 'calling DataObjects::Schema::Column#initialize'
 
     its(:default) { should be(nil)            }
-    its(:options) { should == default_options }
 
     it { should be_required }
 
@@ -36,7 +35,6 @@ describe 'DataObjects::Schema::Column#initialize' do
     it_should_behave_like 'calling DataObjects::Schema::Column#initialize'
 
     its(:default) { should be(nil)            }
-    its(:options) { should == default_options }
 
     it { should be_required }
 
@@ -51,7 +49,6 @@ describe 'DataObjects::Schema::Column#initialize' do
     it_should_behave_like 'calling DataObjects::Schema::Column#initialize'
 
     its(:default) { should == 'foo'   }
-    its(:options) { should == options }
 
     it { should_not be_required }
 

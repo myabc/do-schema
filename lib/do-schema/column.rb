@@ -11,16 +11,14 @@ module DataObjects
       extend Equalizable
 
       attr_reader :name
-      attr_reader :options
       attr_reader :default
 
       equalize :name, :default, :required?
 
       def initialize(name, options)
         @name     = name
-        @options  = default_options.merge(options)
-        @default  = @options[:default]
-        @required = @options[:required]
+        @default  = options.fetch(:default, nil)
+        @required = options.fetch(:required, default_options.fetch(:required))
       end
 
       # @api public
