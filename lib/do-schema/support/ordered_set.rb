@@ -29,8 +29,7 @@ module DataObjects
       #
       # @api private
       def <<(entry)
-        return self if include?(entry)
-        transform do
+        transform_unless(include?(entry)) do
           @index[entry] = length
           entries << entry
         end
