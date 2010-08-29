@@ -84,7 +84,13 @@ DataClump:
   max_copies: 1
   min_clump_size: 2
 ControlCouple:
-  exclude: []
+  exclude: [
+
+    # The purpose of this is readability and the condition
+    # argument is the whole point of having this method.
+    DataObjects::Schema::Transformable#transform_unless
+
+  ]
   enabled: true
 LongYieldList:
   max_params: 1
