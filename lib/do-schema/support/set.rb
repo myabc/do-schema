@@ -17,7 +17,7 @@ module DataObjects
       equalize :entries
 
       def initialize(entries = nil)
-        @entries = ::Set.new
+        @entries = container
         merge(entries || [])
       end
 
@@ -31,7 +31,7 @@ module DataObjects
       #
       # @api public
       def <<(entry)
-        transform { entries << entry }
+        transform_unless(include?(entry)) { entries << entry }
       end
 
       # Merge in another Collection
@@ -93,6 +93,12 @@ module DataObjects
       # @api private
       def include?(entry)
         entries.include?(entry)
+      end
+
+    private
+
+      def container
+        ::Array.new
       end
 
     end # class Collection
