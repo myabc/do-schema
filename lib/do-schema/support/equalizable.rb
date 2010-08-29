@@ -28,17 +28,9 @@ module DataObjects
       end
 
       def define_equivalent_method(methods)
-        respond_to = []
         equivalent = []
 
         methods.each do |method|
-
-          # This is not necessary when relying on #kind_of? already
-          # If we decide to rely on duck typing only, this code must
-          # be readded
-          #
-          # respond_to << "other.respond_to?(#{method.inspect})"
-
           equivalent << "#{method} == other.#{method}"
         end
 
@@ -52,12 +44,6 @@ module DataObjects
             # return true if equal?(other)
 
             return false unless kind_of?(other.class) || other.kind_of?(self.class)
-
-            # This is not necessary when relying on #kind_of? already
-            # If we decide to rely on duck typing only, this code must
-            # be readded
-            #
-            # #{respond_to.join(' && ')} &&
 
             #{equivalent.join(' && ')}
           end
