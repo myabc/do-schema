@@ -26,12 +26,7 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: [
-    # both of these methods are utility class methods,
-    # incorrectly identified as instance methods
-    'Veritas::Relation::Operation::Limit#assert_valid_limit',
-    'Veritas::Relation::Operation::Offset#assert_valid_offset'
-  ]
+  exclude: []
   enabled: true
 ClassVariable:
   exclude: []
@@ -84,14 +79,7 @@ SimulatedPolymorphism:
   enabled: true
   max_ifs: 2
 DataClump:
-  exclude: [
-    # all of these classes have utility class methods that are
-    # incorrectly identified as instance methods
-    Veritas::Algebra::Join,
-    Veritas::Relation::Operation::Binary::ClassMethods,
-    Veritas::Relation::Operation::Set::ClassMethods,
-    Veritas::Relation::Operation::Order
-  ]
+  exclude: []
   enabled: true
   max_copies: 1
   min_clump_size: 2
