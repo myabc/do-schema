@@ -64,10 +64,6 @@ begin
       other_methods = mod.protected_instance_methods(false) |
                       mod.private_instance_methods(false)
 
-      other_methods.reject! do |method|
-        spec_methods << method
-      end
-
       spec_methods.each do |method|
 
         spec_file = spec_prefix.join(map.file_name(method, mod.name))
