@@ -120,7 +120,9 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/tables/initialize_spec.rb",
      "spec/unit/data_objects/schema/tables/length_spec.rb",
      "spec/unit/data_objects/schema/tables/merge_spec.rb",
+     "spec/unit/data_objects/schema/transformable/fixtures/dummy.rb",
      "spec/unit/data_objects/schema/transformable/transform_spec.rb",
+     "spec/unit/data_objects/schema/transformable/transform_unless_spec.rb",
      "tasks/ci.rake",
      "tasks/clean.rake",
      "tasks/quality/flay.rake",
@@ -213,7 +215,9 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/tables/initialize_spec.rb",
      "spec/unit/data_objects/schema/tables/length_spec.rb",
      "spec/unit/data_objects/schema/tables/merge_spec.rb",
-     "spec/unit/data_objects/schema/transformable/transform_spec.rb"
+     "spec/unit/data_objects/schema/transformable/fixtures/dummy.rb",
+     "spec/unit/data_objects/schema/transformable/transform_spec.rb",
+     "spec/unit/data_objects/schema/transformable/transform_unless_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

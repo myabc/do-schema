@@ -11,6 +11,10 @@ module DataObjects
         copy.freeze
       end
 
+      def transform_unless(condition, &block)
+        condition ? self : transform(&block)
+      end
+
     end # module Transformable
 
   end # module Schema

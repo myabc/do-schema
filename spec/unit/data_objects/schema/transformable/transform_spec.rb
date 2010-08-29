@@ -1,22 +1,6 @@
 require 'spec_helper'
 require 'do-schema/support/transformable'
-
-class Immutable
-
-  include DataObjects::Schema::Transformable
-
-  attr_reader :state, :delta
-
-  def initialize(state)
-    @state = state
-    @delta = nil
-  end
-
-  def modify(delta)
-    transform { @delta = delta }
-  end
-
-end
+require 'spec/unit/data_objects/schema/transformable/fixtures/dummy'
 
 describe 'DataObjects::Schema::Transformable#transform' do
 
