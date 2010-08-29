@@ -35,19 +35,6 @@ module DataObjects
         end
       end
 
-      # Merge in another Collection
-      #
-      # @param [#each] other
-      #   the other Collection
-      #
-      # @return [Collection]
-      #   returns self
-      #
-      # @api public
-      def merge(other)
-        transform { other.each { |entry| self << entry } }
-      end
-
       # Return the index for the entry in the set
       #
       # @param [Object] entry
