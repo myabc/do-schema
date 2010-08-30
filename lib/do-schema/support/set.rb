@@ -44,9 +44,7 @@ module DataObjects
       #
       # @api public
       def merge(other)
-        result = self
-        other.each { |entry| result  = self << entry }
-        result
+        other.inject(self) { |result, entry| result << entry }
       end
 
       # Iterate over each entry in the set
