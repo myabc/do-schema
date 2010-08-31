@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'do-schema/support/ordered_set'
 
 shared_examples_for 'DataObjects::Schema::OrderedSet#index when the entry is not present' do
 

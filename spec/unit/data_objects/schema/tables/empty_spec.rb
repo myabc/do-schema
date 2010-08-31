@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/set/empty_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/empty_spec'
 
 describe 'DataObjects::Schema::Tables#empty?' do
 
@@ -12,7 +12,7 @@ describe 'DataObjects::Schema::Tables#empty?' do
 
     let(:set) { DataObjects::Schema::Tables.new }
 
-    it_should_behave_like 'DataObjects::Schema::Set#empty? with no entries in it'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#empty? with no entries in it'
 
   end
 
@@ -22,7 +22,7 @@ describe 'DataObjects::Schema::Tables#empty?' do
     let(:table) { entry                                      }
     let(:entry) { DataObjects::Schema::Table.new('name', {}) }
 
-    it_should_behave_like 'DataObjects::Schema::Set#empty? with entries in it'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#empty? with entries in it'
 
   end
 

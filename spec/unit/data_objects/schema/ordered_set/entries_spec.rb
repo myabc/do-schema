@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/set/entries_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/entries_spec'
 
 describe 'DataObjects::Schema::OrderedSet#entries' do
 
@@ -12,7 +12,7 @@ describe 'DataObjects::Schema::OrderedSet#entries' do
 
     let(:set) { DataObjects::Schema::OrderedSet.new }
 
-    it_should_behave_like 'DataObjects::Schema::Set#entries with no entries'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#entries with no entries'
 
   end
 
@@ -21,7 +21,7 @@ describe 'DataObjects::Schema::OrderedSet#entries' do
     let(:set)   { DataObjects::Schema::Columns.new([entry]) }
     let(:entry) { 1                                         }
 
-    it_should_behave_like 'DataObjects::Schema::Set#entries with entries'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#entries with entries'
 
   end
 

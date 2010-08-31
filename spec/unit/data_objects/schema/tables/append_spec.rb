@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/set/append_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/append_spec'
 
 describe 'DataObjects::Schema::Tables#<<' do
 
@@ -15,7 +15,7 @@ describe 'DataObjects::Schema::Tables#<<' do
 
     let(:entry2)  { DataObjects::Schema::Table.new('table2') }
 
-    it_should_behave_like 'DataObjects::Schema::Set#<< when appending a not yet included entry'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#<< when appending a not yet included entry'
 
   end
 
@@ -23,7 +23,7 @@ describe 'DataObjects::Schema::Tables#<<' do
 
     let(:entry2)  { entry1.dup }
 
-    it_should_behave_like 'DataObjects::Schema::Set#<< when appending an already included entry'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#<< when appending an already included entry'
 
   end
 

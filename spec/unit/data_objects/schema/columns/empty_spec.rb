@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/column'
-require 'spec/unit/data_objects/schema/set/empty_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/empty_spec'
 
 describe 'DataObjects::Schema::Columns#empty?' do
 
@@ -12,7 +12,7 @@ describe 'DataObjects::Schema::Columns#empty?' do
 
     let(:set) { DataObjects::Schema::Columns.new }
 
-    it_should_behave_like 'DataObjects::Schema::Set#empty? with no entries in it'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#empty? with no entries in it'
 
   end
 
@@ -21,7 +21,7 @@ describe 'DataObjects::Schema::Columns#empty?' do
     let(:set)   { DataObjects::Schema::Columns.new([entry] )  }
     let(:entry) { DataObjects::Schema::Column.new('name', {}) }
 
-    it_should_behave_like 'DataObjects::Schema::Set#empty? with entries in it'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#empty? with entries in it'
 
   end
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/set/include_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/include_spec'
 
 describe 'DataObjects::Schema::OrderedSet#include?' do
 
@@ -13,7 +13,7 @@ describe 'DataObjects::Schema::OrderedSet#include?' do
     let(:set)   { DataObjects::Schema::OrderedSet.new([entry]) }
     let(:entry) { 1                                            }
 
-    it_should_behave_like 'DataObjects::Schema::Set#include? when the entry is present'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#include? when the entry is present'
 
   end
 
@@ -22,7 +22,7 @@ describe 'DataObjects::Schema::OrderedSet#include?' do
     let(:set)   { DataObjects::Schema::OrderedSet.new }
     let(:entry) { 1                                   }
 
-    it_should_behave_like 'DataObjects::Schema::Set#include? when the entry is not present'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#include? when the entry is not present'
 
   end
 

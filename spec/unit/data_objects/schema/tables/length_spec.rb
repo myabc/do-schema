@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/set/length_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/length_spec'
 
 describe 'DataObjects::Schema::Tables#length' do
 
@@ -10,7 +10,7 @@ describe 'DataObjects::Schema::Tables#length' do
 
     let(:tables) { DataObjects::Schema::Tables.new }
 
-    it_should_behave_like 'DataObjects::Schema::Set#length when no entry is present'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#length when no entry is present'
 
   end
 
@@ -19,7 +19,7 @@ describe 'DataObjects::Schema::Tables#length' do
     let(:tables) { DataObjects::Schema::Tables.new([table]) }
     let(:table)  { DataObjects::Schema::Table.new('name')   }
 
-    it_should_behave_like 'DataObjects::Schema::Set#length when 1 entry is present'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#length when 1 entry is present'
 
   end
 
@@ -34,7 +34,7 @@ describe 'DataObjects::Schema::Tables#length' do
 
     let(:expected_length) { entries.length                   }
 
-    it_should_behave_like 'DataObjects::Schema::Set#length when more than 1 entry is present'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#length when more than 1 entry is present'
 
   end
 

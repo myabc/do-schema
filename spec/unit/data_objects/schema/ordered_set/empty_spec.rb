@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/set/empty_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/empty_spec'
 
 describe 'DataObjects::Schema::OrderedSet#empty?' do
 
@@ -10,7 +10,7 @@ describe 'DataObjects::Schema::OrderedSet#empty?' do
 
     let(:set) { DataObjects::Schema::OrderedSet.new }
 
-    it_should_behave_like 'DataObjects::Schema::Set#empty? with no entries in it'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#empty? with no entries in it'
 
   end
 
@@ -19,7 +19,7 @@ describe 'DataObjects::Schema::OrderedSet#empty?' do
     let(:set)   { DataObjects::Schema::OrderedSet.new([entry]) }
     let(:entry) { 1                                            }
 
-    it_should_behave_like 'DataObjects::Schema::Set#empty? with entries in it'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#empty? with entries in it'
   end
 
 end

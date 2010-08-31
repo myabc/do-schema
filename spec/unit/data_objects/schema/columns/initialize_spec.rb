@@ -8,7 +8,7 @@ describe 'DataObjects::Schema::Columns#initialize' do
 
     subject { DataObjects::Schema::Columns.new }
 
-    it_should_behave_like 'DataObjects::Schema::Set#initialize when no entries are given'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#initialize when no entries are given'
 
   end
 

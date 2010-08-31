@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/set/merge_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/merge_spec'
 
 describe 'DataObjects::Schema::Tables#merge' do
 
@@ -11,7 +11,7 @@ describe 'DataObjects::Schema::Tables#merge' do
     let(:tables) { set                             }
     let(:set)    { DataObjects::Schema::Tables.new }
 
-    it_should_behave_like 'DataObjects::Schema::Set#merge when merging two empty sets'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#merge when merging two empty sets'
 
   end
 
@@ -24,7 +24,7 @@ describe 'DataObjects::Schema::Tables#merge' do
     let(:set)    { DataObjects::Schema::Tables.new([entry]) }
     let(:entry)  { DataObjects::Schema::Table.new('name')   }
 
-    it_should_behave_like 'DataObjects::Schema::Set#merge when merging a set with already present entries'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#merge when merging a set with already present entries'
 
   end
 
@@ -38,7 +38,7 @@ describe 'DataObjects::Schema::Tables#merge' do
     let(:entry1) { DataObjects::Schema::Table.new('entry1')  }
     let(:entry2) { DataObjects::Schema::Table.new('entry2')  }
 
-    it_should_behave_like 'DataObjects::Schema::Set#merge when merging a set with not yet present entries'
+    it_should_behave_like 'DataObjects::Schema::OrderedSet#merge when merging a set with not yet present entries'
 
   end
 end

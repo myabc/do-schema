@@ -1,10 +1,10 @@
-require 'do-schema/support/set'
+require 'do-schema/support/ordered_set'
 require 'do-schema/column'
 
 module DataObjects
   module Schema
 
-    class Tables < Schema::Set
+    class Tables < OrderedSet
     end
 
     class Table

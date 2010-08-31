@@ -1,12 +1,12 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/set/each_spec'
+require 'spec/unit/data_objects/schema/ordered_set/shared/each_spec'
 
 describe 'DataObjects::Schema::Tables' do
 
   subject { DataObjects::Schema::Tables.new }
 
-  it_should_behave_like 'DataObjects::Schema::Set'
+  it_should_behave_like 'DataObjects::Schema::OrderedSet'
 
 end
 
@@ -21,7 +21,7 @@ describe 'DataObjects::Schema::Tables#each' do
   let(:entry)  { DataObjects::Schema::Table.new('name')   }
   let(:yields) { []                                       }
 
-  it_should_behave_like 'DataObjects::Schema::Set#each'
+  it_should_behave_like 'DataObjects::Schema::OrderedSet#each'
 
 end
 
