@@ -26,7 +26,9 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: []
+  exclude: [
+    DataObjects::Schema::Equalizable#define_equivalent_method
+  ]
   enabled: true
 ClassVariable:
   exclude: []
@@ -96,3 +98,4 @@ LongYieldList:
   max_params: 1
   exclude: []
   enabled: true
+
