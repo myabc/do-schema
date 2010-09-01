@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirkjan Bussink"]
-  s.date = %q{2010-08-31}
+  s.date = %q{2010-09-01}
   s.description = %q{TODO: longer description of your gem}
   s.email = %q{d.bussink@gmail.com}
   s.executables = ["autospec", "autotest", "churn", "edit_json.rb", "flay", "flog", "heckle", "jeweler", "mkspec", "mspec", "mspec-ci", "mspec-run", "mspec-tag", "multigem", "multiruby", "multiruby_setup", "parse_tree_abc", "parse_tree_audit", "parse_tree_deps", "parse_tree_show", "prettify_json.rb", "r2r_show", "rake", "rcov", "reek", "roodi", "roodi-describe", "ruby_parse", "rubyforge", "saikuro", "sow", "spec", "unit_diff", "yard-graph", "yardoc", "yardstick", "yri", "zentest"]
@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
      "lib/do-schema/column/integer.rb",
      "lib/do-schema/column/string.rb",
      "lib/do-schema/database.rb",
+     "lib/do-schema/index.rb",
      "lib/do-schema/support/equalizable.rb",
      "lib/do-schema/support/ordered_set.rb",
      "lib/do-schema/support/transformable.rb",
@@ -72,6 +73,13 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/database/name_spec.rb",
      "spec/unit/data_objects/schema/database/tables_spec.rb",
      "spec/unit/data_objects/schema/database/uri_spec.rb",
+     "spec/unit/data_objects/schema/index/columns_spec.rb",
+     "spec/unit/data_objects/schema/index/initialize_spec.rb",
+     "spec/unit/data_objects/schema/index/name_spec.rb",
+     "spec/unit/data_objects/schema/index/shared/columns_spec.rb",
+     "spec/unit/data_objects/schema/index/shared/initialize_spec.rb",
+     "spec/unit/data_objects/schema/index/shared/name_spec.rb",
+     "spec/unit/data_objects/schema/index/unique_spec.rb",
      "spec/unit/data_objects/schema/ordered_set/append_spec.rb",
      "spec/unit/data_objects/schema/ordered_set/each_spec.rb",
      "spec/unit/data_objects/schema/ordered_set/empty_spec.rb",
@@ -114,6 +122,10 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/transformable/fixtures/dummy.rb",
      "spec/unit/data_objects/schema/transformable/transform_spec.rb",
      "spec/unit/data_objects/schema/transformable/transform_unless_spec.rb",
+     "spec/unit/data_objects/schema/unique_index/columns_spec.rb",
+     "spec/unit/data_objects/schema/unique_index/initialize_spec.rb",
+     "spec/unit/data_objects/schema/unique_index/name_spec.rb",
+     "spec/unit/data_objects/schema/unique_index/unique_spec.rb",
      "tasks/ci.rake",
      "tasks/clean.rake",
      "tasks/quality/flay.rake",
@@ -159,6 +171,13 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/database/name_spec.rb",
      "spec/unit/data_objects/schema/database/tables_spec.rb",
      "spec/unit/data_objects/schema/database/uri_spec.rb",
+     "spec/unit/data_objects/schema/index/columns_spec.rb",
+     "spec/unit/data_objects/schema/index/initialize_spec.rb",
+     "spec/unit/data_objects/schema/index/name_spec.rb",
+     "spec/unit/data_objects/schema/index/shared/columns_spec.rb",
+     "spec/unit/data_objects/schema/index/shared/initialize_spec.rb",
+     "spec/unit/data_objects/schema/index/shared/name_spec.rb",
+     "spec/unit/data_objects/schema/index/unique_spec.rb",
      "spec/unit/data_objects/schema/ordered_set/append_spec.rb",
      "spec/unit/data_objects/schema/ordered_set/each_spec.rb",
      "spec/unit/data_objects/schema/ordered_set/empty_spec.rb",
@@ -201,6 +220,10 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/transformable/fixtures/dummy.rb",
      "spec/unit/data_objects/schema/transformable/transform_spec.rb",
      "spec/unit/data_objects/schema/transformable/transform_unless_spec.rb"
+     "spec/unit/data_objects/schema/unique_index/columns_spec.rb",
+     "spec/unit/data_objects/schema/unique_index/initialize_spec.rb",
+     "spec/unit/data_objects/schema/unique_index/name_spec.rb",
+     "spec/unit/data_objects/schema/unique_index/unique_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
