@@ -3,13 +3,13 @@ require 'spec/unit/data_objects/schema/index/shared/columns_spec'
 
 require 'do-schema/index'
 
-describe 'DataObjects::Schema::Index#columns' do
+describe 'DataObjects::Schema::Index::Unique#columns' do
 
   subject { index.columns }
 
-  let(:index)   { DataObjects::Schema::UniqueIndex.new(name, columns) }
+  let(:index)   { DataObjects::Schema::Index::Unique.new(name, columns) }
 
-  let(:name)    { 'index'                                       }
+  let(:name)    { 'unique_index'                                }
   let(:column)  { DataObjects::Schema::Column.new('column', {}) }
   let(:columns) { DataObjects::Schema::Columns.new([column])    }
 

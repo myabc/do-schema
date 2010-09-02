@@ -3,11 +3,11 @@ require 'spec/unit/data_objects/schema/index/shared/initialize_spec'
 
 require 'do-schema/index'
 
-describe 'DataObjects::Schema::Index#initialize' do
+describe 'DataObjects::Schema::Index::Unique#initialize' do
 
-  subject { DataObjects::Schema::UniqueIndex.new(name, columns) }
+  subject { DataObjects::Schema::Index::Unique.new(name, columns) }
 
-  let(:name)    { 'index'                                       }
+  let(:name)    { 'unique_index'                                }
   let(:column)  { DataObjects::Schema::Column.new('column', {}) }
   let(:columns) { DataObjects::Schema::Columns.new([column])    }
 

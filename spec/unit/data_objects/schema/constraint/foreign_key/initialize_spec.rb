@@ -1,0 +1,42 @@
+require 'spec_helper'
+require 'do-schema/constraint'
+
+shared_examples_for 'DataObjects::Schema::ForeignKey#initialize with valid parameters' do
+
+  its(:name)      { should == name       }
+  its(:columns)   { should == fk_columns }
+  its(:reference) { should == reference  }
+  its(:on_delete) { should == on_delete  }
+  its(:on_update) { should == on_update  }
+
+end
+
+describe 'DataObjects::Schema::ForeignKey#initialize' do
+
+  context 'when columns and referenced columns do not match' do
+    it { pending }
+  end
+
+  context 'when columns and referenced columns match' do
+
+    subject { DataObjects::Schema::Constraint::ForeignKey.new(name, fk_columns, reference, options) }
+
+    let(:name)          { 'foreign_key'                                          }
+    let(:fk_columns)    { DataObjects::Schema::Columns.new([fk_column])          }
+    let(:fk_column)     { DataObjects::Schema::Column.new('fk_column', {})       }
+    let(:reference)     { DataObjects::Schema::Reference.new(table, ref_columns) }
+    let(:table)         { DataObjects::Schema::Table.new('table', table_columns) }
+    let(:table_columns) { DataObjects::Schema::Columns.new([table_column])       }
+    let(:table_column)  { DataObjects::Schema::Column.new('table_column', {})    }
+    let(:ref_columns)   { DataObjects::Schema::Columns.new([ref_column])         }
+    let(:ref_column)    { DataObjects::Schema::Column.new('ref_column', {})      }
+    let(:options)       { { :on_delete => on_delete, :on_update => on_update }   }
+    let(:on_delete)     { :restrict                                              }
+    let(:on_update)     { :restrict                                              }
+
+    it_should_behave_like 'DataObjects::Schema::ForeignKey#initialize with valid parameters'
+
+  end
+
+end
+

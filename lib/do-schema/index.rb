@@ -19,17 +19,22 @@ module DataObjects
         false
       end
 
-    end
+      class Unique < Index
 
-    class UniqueIndex < Index
+        def unique?
+          true
+        end
 
-      def unique?
-        true
       end
 
     end
 
     class Indexes < OrderedSet
+
+      def unique_indexes
+        UniqueIndexes.new(entries.select(&:unique?))
+      end
+
     end
 
     class UniqueIndexes < OrderedSet
