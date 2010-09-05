@@ -17,10 +17,9 @@ module DataObjects
       equalize :name, :default, :required?
 
       def initialize(name, options = {}, constraints = [])
-        @name     = name
-        # TODO think about replacing options with constraints
-        @default  = options.fetch(:default, nil)
-        @required = options.fetch(:required, default_options.fetch(:required))
+        @name        = name
+        @default     = options.fetch(:default, nil)
+        @required    = options.fetch(:required, default_options.fetch(:required))
         @constraints = ColumnConstraints.new(constraints)
       end
 

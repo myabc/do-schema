@@ -37,6 +37,8 @@ module DataObjects
 
       class TableConstraint < Constraint
 
+        attr_reader :columns
+
         def initialize(name, columns)
           super(name)
           @columns = Columns.new(columns)
@@ -83,6 +85,10 @@ module DataObjects
         super(entries)
         # TODO is this really necessary?
         raise unless entries.all? { |c| c.is_a?(TableConstraint)}
+      end
+
+      def primary_key
+        entries.find { |constraint| constraint.is_a?(PrimaryKey) }
       end
 
     end
