@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'spec/unit/data_objects/schema/constraint/shared/name_spec'
+
 require 'do-schema/constraint'
 
 describe 'DataObjects::Schema::ForeignKey#name' do
@@ -20,7 +22,7 @@ describe 'DataObjects::Schema::ForeignKey#name' do
   let(:on_delete)     { :restrict                                              }
   let(:on_update)     { :restrict                                              }
 
-  it { should == name }
+  it_should_behave_like 'DataObjects::Schema::Constraint#name'
 
 end
 

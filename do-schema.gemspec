@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirkjan Bussink"]
-  s.date = %q{2010-09-05}
+  s.date = %q{2010-09-06}
   s.description = %q{TODO: longer description of your gem}
   s.email = %q{d.bussink@gmail.com}
   s.executables = ["autospec", "autotest", "churn", "edit_json.rb", "flay", "flog", "heckle", "jeweler", "mkspec", "mspec", "mspec-ci", "mspec-run", "mspec-tag", "multigem", "multiruby", "multiruby_setup", "parse_tree_abc", "parse_tree_audit", "parse_tree_deps", "parse_tree_show", "prettify_json.rb", "r2r_show", "rake", "rcov", "reek", "roodi", "roodi-describe", "ruby_parse", "rubyforge", "saikuro", "sow", "spec", "unit_diff", "yard-graph", "yardoc", "yardstick", "yri", "zentest"]
@@ -79,6 +79,7 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/constraint/primary_key/columns_spec.rb",
      "spec/unit/data_objects/schema/constraint/primary_key/initialize_spec.rb",
      "spec/unit/data_objects/schema/constraint/primary_key/name_spec.rb",
+     "spec/unit/data_objects/schema/constraint/shared/name_spec.rb",
      "spec/unit/data_objects/schema/constraint/table_constraint/columns_spec.rb",
      "spec/unit/data_objects/schema/constraint/table_constraint/initialize_spec.rb",
      "spec/unit/data_objects/schema/constraint/table_constraint/name_spec.rb",
@@ -196,6 +197,7 @@ Gem::Specification.new do |s|
      "spec/unit/data_objects/schema/constraint/primary_key/columns_spec.rb",
      "spec/unit/data_objects/schema/constraint/primary_key/initialize_spec.rb",
      "spec/unit/data_objects/schema/constraint/primary_key/name_spec.rb",
+     "spec/unit/data_objects/schema/constraint/shared/name_spec.rb",
      "spec/unit/data_objects/schema/constraint/table_constraint/columns_spec.rb",
      "spec/unit/data_objects/schema/constraint/table_constraint/initialize_spec.rb",
      "spec/unit/data_objects/schema/constraint/table_constraint/name_spec.rb",

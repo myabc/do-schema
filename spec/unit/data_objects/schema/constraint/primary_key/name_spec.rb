@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'spec/unit/data_objects/schema/constraint/table_constraint/name_spec'
+require 'spec/unit/data_objects/schema/constraint/shared/name_spec'
 
 require 'do-schema/constraint'
 
@@ -12,7 +12,7 @@ describe 'DataObjects::Schema::Constraint::PrimaryKey#name' do
   let(:columns)     { DataObjects::Schema::Columns.new([column])                     }
   let(:column)      { DataObjects::Schema::Column.new('column', {})                  }
 
-  it_should_behave_like 'DataObjects::Schema::Constraint::TableConstraint#name'
+  it_should_behave_like 'DataObjects::Schema::Constraint#name'
 
 end
 
