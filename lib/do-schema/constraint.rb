@@ -2,26 +2,12 @@ module DataObjects
 
   module Schema
 
-    class Constraint
+    class Constraint # TODO make this abstract?
 
       attr_reader :name
 
       def initialize(name)
         @name = name
-      end
-
-      class NotNull < Constraint
-      end
-
-      class Default < Constraint
-
-        attr_reader :value
-
-        def initialize(name, value)
-          super(name)
-          @value = value
-        end
-
       end
 
       class Check < Constraint
@@ -35,13 +21,13 @@ module DataObjects
 
       end
 
-      class TableConstraint < Constraint
+      class TableConstraint < Constraint # TODO make this abstract?
 
         attr_reader :columns
 
         def initialize(name, columns)
           super(name)
-          @columns = Columns.new(columns)
+          @columns = columns
         end
 
       end
@@ -69,21 +55,10 @@ module DataObjects
 
     end
 
-    class ColumnConstraints < OrderedSet
-
-      def initialize(entries = nil)
-        super(entries)
-        # TODO is this really necessary?
-        raise unless entries.all? { |c| c.is_a?(ColumnConstraint)}
-      end
-
-    end
-
     class TableConstraints < OrderedSet
 
       def initialize(entries = nil)
         super(entries)
-        # TODO is this really necessary?
         raise unless entries.all? { |c| c.is_a?(TableConstraint)}
       end
 

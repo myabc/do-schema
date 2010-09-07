@@ -12,15 +12,13 @@ module DataObjects
 
       attr_reader :name
       attr_reader :default
-      attr_reader :constraints
 
       equalize :name, :default, :required?
 
-      def initialize(name, options = {}, constraints = [])
-        @name        = name
-        @default     = options.fetch(:default, nil)
-        @required    = options.fetch(:required, default_options.fetch(:required))
-        @constraints = ColumnConstraints.new(constraints)
+      def initialize(name, options = {})
+        @name     = name
+        @default  = options.fetch(:default, nil)
+        @required = options.fetch(:required, default_options.fetch(:required))
       end
 
       # @api public
