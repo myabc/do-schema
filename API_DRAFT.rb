@@ -1,36 +1,49 @@
-# ----------------------------------------------------------------
-#
-# DataObjects::Schema::
-#                      Database
-#                      Table
-#
-#                      Column::
-#                              String  < Column
-#                              Numeric < Column
-#                              Integer < Numeric
-#                              Float   < Numeric
-#                              Decimal < Numeric
-#                              ...
-#
-#                      Index
-#                      UniqueIndex < Index
-#                      PrimaryKey  < UniqueIndex
-#                      ForeignKey
-#                      Reference
-#
-#                      OrderedSet
-#                      Columns       (has-a OrderedSet)
-#                      Indexes       (has-a OrderedSet)
-#                      UniqueIndexes (has-a OrderedSet)
-#                      ForeignKeys   (has-a OrderedSet)
-#
-#
-# ---------------------------------------------------------------
-# NOTE
-# ---------------------------------------------------------------
-# Table, Index, UniqueIndex, PrimaryKey, ForeignKey and Reference
-# are Enumerable, and delegate #each to #columns
-# ---------------------------------------------------------------
+
+
+           ####################################################################
+           #                                                                  #
+           # DataObjects::Schema::                                            #
+           #                      Database                                    #
+           #                      Table                                       #
+           #                                                                  #
+           #                      Column::                                    #
+           #                              String  < Column                    #
+           #                              Numeric < Column                    #
+           #                              Integer < Numeric                   #
+           #                              Float   < Numeric                   #
+           #                              Decimal < Numeric                   #
+           #                              ...                                 #
+           #                                                                  #
+           #                      Index                                       #
+           #                      UniqueIndex < Index                         #
+           #                      PrimaryKey  < UniqueIndex                   #
+           #                      ForeignKey                                  #
+           #                      Reference                                   #
+           #                                                                  #
+           #                      OrderedSet                                  #
+           #                      Columns       (has-a OrderedSet)            #
+           #                      Indexes       (has-a OrderedSet)            #
+           #                      UniqueIndexes (has-a OrderedSet)            #
+           #                      ForeignKeys   (has-a OrderedSet)            #
+           #                                                                  #
+           #                                                                  #
+           # ---------------------------------------------------------------  #
+           #                             NOTES                                #
+           # ---------------------------------------------------------------  #
+           #                                                                  #
+           # Table, Index, UniqueIndex, PrimaryKey, ForeignKey and Reference  #
+           # are Enumerable, and delegate #each to #columns                   #
+           #                                                                  #
+           ####################################################################
+
+
+
+
+##############################################################################################
+#                                                                                            #
+#                             Database introspection API                                     #
+#                                                                                            #
+##############################################################################################
 
 
 uri = Addressable::URI.parse('mysql://localhost/dm_core_test')
@@ -40,6 +53,8 @@ database = DataObjects::Schema.load(uri)
 database.name                  # => "dm_core_test"
 database.uri                   # => uri
 database.tables                # => Tables.new([ Table ])
+database.tables[:table_name]   # => Table.new('table_name', ...)
+database.method_missing        # delegates to #tables[]
 
 database.tables.each do |table|
 
@@ -67,6 +82,29 @@ database.tables.each do |table|
 
   end
 
+  # Primary Key API
+  table.primary_key            # => PrimaryKey.new(name, [ Column ])
+  table.primary_key.columns    # => Columns.new([ Column ])
+  table.primary_key.unique?    # => true
+
+
+  # Foreign Key API
+  table.foreign_keys           # => ForeignKeys.new([ ForeignKey ])
+
+  table.foreign_keys.each do |foreign_key|
+
+    foreign_key                # => ForeignKey.new('name', [ Column ], reference, :on_delete => :restrict, :on_update => :restrict)
+    foreign_key.name           # => "foreign_key_name"
+    foreign_key.columns        # => Columns.new([ Column ])
+    foreign_key.reference      # => Reference.new(other_table, other_table.primary_key)
+    foreign_key.on_delete      # => :restrict
+    foreign_key.on_update      # => :restrict
+
+  end
+
+  # Check constraint API
+  table.check_constraints
+  table.check_constraints['constraint_name'] # => Constraint::Check
 
   # Index API
   table.indexes                # => Indexes.new([ Index ])
@@ -92,32 +130,15 @@ database.tables.each do |table|
 
   end
 
-  # Primary Key API
-  table.primary_key            # => PrimaryKey.new(name, [ Column ])
-  table.primary_key.columns    # => Columns.new([ Column ])
-  table.primary_key.unique?    # => true
-
-
-  # Foreign Key API
-  table.foreign_keys           # => ForeignKeys.new([ ForeignKey ])
-
-  table.foreign_keys.each do |foreign_key|
-
-    foreign_key                # => ForeignKey.new('name', [ Column ], reference, :on_delete => :restrict, :on_update => :restrict)
-    foreign_key.name           # => "foreign_key_name"
-    foreign_key.columns        # => Columns.new([ Column ])
-    foreign_key.reference      # => Reference.new(other_table, other_table.primary_key)
-    foreign_key.on_delete      # => :restrict
-    foreign_key.on_update      # => :restrict
-
-  end
 
 end
 
 
-# --------------------------------------------------------------------------------------------
-#                             Database manipulation API
-# --------------------------------------------------------------------------------------------
+##############################################################################################
+#                                                                                            #
+#                              Database manipulation API                                     #
+#                                                                                            #
+##############################################################################################
 
 
 DataObjects::Schema.create_database(uri)
@@ -128,6 +149,12 @@ DataObjects::Schema.drop_database(uri)
 DataObjects::Schema.database
 
 DataObjects::Schema.database(uri) do
+
+  uri           # => Addressable::URI        => the current database uri
+
+  db            # => Database.new(uri)       => the current database
+  db(uri)       # => Database.new(uri)       => the current database
+  db(other_uri) # => Database.new(other_uri) => the database located at other_uri
 
 
   execute 'statement'
@@ -142,32 +169,37 @@ DataObjects::Schema.database(uri) do
 
   create_table :people do
 
-    column :id,    Auto,    :key => true
+    column :id,    Auto,    :key      => true
     column :name,  String,  :required => true, :default => 'foo'
-    column :age,   Integer, :required => true, :check => 'age > 16'
+    column :age,   Integer, :required => true, :check   => 'age > 16' # constraint name => 'age_check'
     column :token, String,  :required => true
 
-    index 'name_index', :name
+    index :name_index, :name
 
-    unique_index 'unique_token', :token
+    unique_index :unique_token, :token
+
+    # Bad example that illustrates how to add a check constraint for
+    # which the condition depends on the values of multiple columns
+
+    check :token_check, "token LIKE name"
 
   end
 
   create_table :tasks do
 
-    column :id,   Auto,   :key => true
+    column :id,   Auto,   :key      => true
     column :name, String, :required => true
 
-    unique_index 'index_name', :name
+    unique_index :index_name, :name
 
   end
 
   create_table :jobs do
 
-    column :id,   Auto,   :key => true
+    column :id,   Auto,   :key      => true
     column :name, String, :required => true
 
-    unique_index 'unique_name', :name
+    unique_index :unique_name, :name
 
   end
 
@@ -181,36 +213,39 @@ DataObjects::Schema.database(uri) do
     # using the explicit syntax shown in the definition of the :workloads
     # table below.
 
-    column :person_id, String  #, :key => true, :references => 'people.id'
-    column :task_id,   Integer #, :key => true, :references => 'tasks.id'
+    column :person_id, String  #, :key => true, :references => people.id # db.people.id
+    column :task_id,   Integer #, :key => true, :references => tasks.id  # db.tasks.id
 
+    # Defining a composite primary key
     primary_key [ :person_id, :task_id ]
 
-    foreign_key 'person_fk', :person_id, :references => 'people.id'
-    foreign_key 'task_fk',   :task_id,   :references => 'tasks.id'
+    # Defining a foreign key with a single column can be done without passing
+    # a block to the #foreign_key method. The 2nd parameter must be a symbol
+    # denoting a column that actually exists in the current database (db)
+    #
+    # When defining the referenced column, we can rely on #method_missing
+    # functionality to recognize any table name inside the current database.
+    # We can also pass the database containing the referenced table explicitly
+
+    foreign_key :person_fk, :person_id, :references => people.id  # db.people.id
+    foreign_key :task_fk,   :task_id,   :references => tasks.id   # db.tasks.id
 
   end
 
   create_table :workloads do
 
     # The [ :id, :person_id, :task_id ] columns
-    # form the primary key of this table.
+    # form the composite primary key of this table.
 
     column :id,          Auto,    :key => true
     column :person_id,   String,  :key => true
     column :task_id,     Integer, :key => true
     column :description, Text
 
-    # The foreign key must be declared explicitly since it references more than one column
-    # There are two ways two declare multi column foreign keys. The outcome is identical!
-
-    # Provide the information needed via arguments to #foreign_key
-    foreign_key 'people_tasks_fk', [ :person_id, :task_id ], :references => 'people_tasks(person_id, task_id)'
-
     # Provide the information needed by passing a block to #foreign_key
-    foreign_key 'people_tasks_fk' do
-      column :person_id, :references => 'people.id'
-      column :tasks_id,  :references => 'tasks.id'
+    foreign_key :people_tasks_fk do
+      column :person_id, :references => people.id
+      column :tasks_id,  :references => tasks.id
     end
 
   end
@@ -239,14 +274,14 @@ DataObjects::Schema.database(uri) do
   alter_table :people do
 
     # Adds a foreign key. Complains if that foreign key already exists
-    add_foreign_key 'work_fk', [ :work ], :references => 'jobs.name'
+    add_foreign_key :work_fk, :work, :references => jobs.name
 
     # Drops a foreign key. Complains if that foreign key doesn't exist yet
-    drop_foreign_key 'work_fk'
+    drop_foreign_key :work_fk
 
     # Drops any constraint identified by the given name. Complains if
     # that constraint doesn't yet exist.
-    drop_constraint 'work_fk'
+    drop_constraint :work_fk
 
   end
 
@@ -259,26 +294,32 @@ DataObjects::Schema.database(uri) do
 
   alter_table :workloads do
 
-    drop_foreign_key 'people_tasks_fk'
+    drop_foreign_key :people_tasks_fk
 
-    add_foreign_key 'people_tasks_fk' do
-      column :person_id, :references => 'people.id'
-      column :tasks_id,  :references => 'tasks.id'
+    add_foreign_key :people_tasks_fk do
+      column :person_id, :references => people.id
+      column :tasks_id,  :references => tasks.id
     end
 
   end
 
-  drop_table :name do
+  alter_table :people do
 
-    before do
+    # Add a foreign key constraint that references a column in a different database
+    #
+    # Referencing tables from a different database means that we can't rely on
+    # #method_missing functionality to lookup available table names. We must specify
+    # the database containing the referenced table explicitly
 
-    end
-
-    after do
-
-    end
+    add_foreign_key :people_name_fk, :name, :references => db(user_db_uri).users.name
 
   end
+
+  drop_table :people
+  drop_table :tasks
+  drop_table :jobs
+  drop_table :people_tasks
+  drop_table :workloads
 
 end
 
