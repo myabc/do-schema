@@ -230,7 +230,7 @@ DataObjects::Schema.database(uri) do
     # functionality to recognize any table name inside the current database.
     # We can also pass the database containing the referenced table explicitly
     #
-    # Customizing the foreign key is possible either by passing arguments or a blocl
+    # Customizing the foreign key is possible either by passing arguments or a block
 
     # Argument API
     foreign_key :person_fk, :person_id, :references => people.id #, :on_update => :restrict, :on_delete => :restrict
