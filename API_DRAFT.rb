@@ -174,13 +174,14 @@ DataObjects::Schema.database(uri) do
     column :age,   Integer, :required => true, :check   => 'age > 16' # constraint name => 'age_check'
     column :token, String,  :required => true
 
+    # Add an index. Complains if an index with that name is already present
     index :name_index, :name
 
+    # Add a unique index. Complains if an index with that name is already present
     unique_index :unique_token, :token
 
     # Bad example that illustrates how to add a check constraint for
     # which the condition depends on the values of multiple columns
-
     check :token_check, "token LIKE name"
 
   end
@@ -190,6 +191,7 @@ DataObjects::Schema.database(uri) do
     column :id,   Auto,   :key      => true
     column :name, String, :required => true
 
+    # Add a unique index. Complains if an index with that name is already present
     unique_index :index_name, :name
 
   end
@@ -199,6 +201,7 @@ DataObjects::Schema.database(uri) do
     column :id,   Auto,   :key      => true
     column :name, String, :required => true
 
+    # Add a unique index. Complains if an index with that name is already present
     unique_index :unique_name, :name
 
   end
@@ -213,8 +216,8 @@ DataObjects::Schema.database(uri) do
     # using the explicit syntax shown in the definition of the :workloads
     # table below.
 
-    column :person_id, String  #, :key => true, :references => people.id # db.people.id
-    column :task_id,   Integer #, :key => true, :references => tasks.id  # db.tasks.id
+    column :person_id, String  #, :key => true, :references => people.id, :on_update => :restrict, :on_delete => :restrict
+    column :task_id,   Integer #, :key => true, :references => tasks.id,  :on_update => :restrict, :on_delete => :restrict
 
     # Defining a composite primary key
     primary_key [ :person_id, :task_id ]
@@ -226,9 +229,25 @@ DataObjects::Schema.database(uri) do
     # When defining the referenced column, we can rely on #method_missing
     # functionality to recognize any table name inside the current database.
     # We can also pass the database containing the referenced table explicitly
+    #
+    # Customizing the foreign key is possible either by passing arguments or a blocl
 
-    foreign_key :person_fk, :person_id, :references => people.id  # db.people.id
-    foreign_key :task_fk,   :task_id,   :references => tasks.id   # db.tasks.id
+    # Argument API
+    foreign_key :person_fk, :person_id, :references => people.id #, :on_update => :restrict, :on_delete => :restrict
+    foreign_key :task_fk,   :task_id,   :references => tasks.id  #, :on_update => :restrict, :on_delete => :restrict
+
+    # Block API
+    foreign_key :person_fk do
+      column :person_id, :references => people.id
+      # on_update :restrict
+      # on_delete :restrict
+    end
+
+    foreign_key :task_fk do
+      column :task_id, :references => tasks.id
+      # on_update :restrict
+      # on_delete :restrict
+    end
 
   end
 
@@ -246,6 +265,8 @@ DataObjects::Schema.database(uri) do
     foreign_key :people_tasks_fk do
       column :person_id, :references => people.id
       column :tasks_id,  :references => tasks.id
+      # on_update :restrict
+      # on_delete :restrict
     end
 
   end
@@ -253,28 +274,40 @@ DataObjects::Schema.database(uri) do
   alter_table :people do
 
     # Adds a column. Complains if that column already exists
-    add_column :hobby, String, :required => false, :default => 'Table Tennis'
+    add_column :hobby, String, :required => false, :default => 'Programming', :check => "hobby LIKE 'Programming'"
 
   end
 
   alter_table :people do
 
-    # Modifies an existing column. Complains if that column doesn't yet exist
-    modify_column :hobby, String, :required => true,  :default => 'Programming'
+    # Modifies an existing column.
+    #
+    # The resulting column will have exactly the options specified.
+    # Previously established options that are not specified during
+    # a call to #modify_column will be reset (to their default values)
+    #
+    # Complains if that column doesn't yet exist
+    modify_column :hobby, String, :required => true,  :default => 'Party', :check => "hobby LIKE 'Party'"
 
   end
 
   alter_table :people do
 
-    # Renames a column. Complains if that column doesn't yet exist
+    # Renames a column.
+    #
+    # Complains if the column to rename doesn't yet exist
+    # Complains if the new column name is already taken
+    #
     rename_column :hobby, :to => :work
 
   end
 
   alter_table :people do
 
-    # Adds a foreign key. Complains if that foreign key already exists
-    add_foreign_key :work_fk, :work, :references => jobs.name
+    # Adds a foreign key.
+    #
+    # Complains if any constraint with the given name already exists
+    add_foreign_key :work_fk, :work, :references => jobs.name, :on_update => :restrict, :on_delete => :restrict
 
     # Drops a foreign key. Complains if that foreign key doesn't exist yet
     drop_foreign_key :work_fk
@@ -290,11 +323,19 @@ DataObjects::Schema.database(uri) do
 
   alter_table :workloads do
 
+    # Drops a foreign key. Complains if that foreign key doesn't exist yet
     drop_foreign_key :people_tasks_fk
 
+    # Add a foreign key constraint targetting multiple columns.
+    #
+    # Complains if that foreign key already exists
+    # Complains if any of the columns isn't present in the table
+    #
     add_foreign_key :people_tasks_fk do
       column :person_id, :references => people.id
       column :tasks_id,  :references => tasks.id
+      # on_update :restrict
+      # on_delete :restrict
     end
 
   end
@@ -307,7 +348,18 @@ DataObjects::Schema.database(uri) do
     # #method_missing functionality to lookup available table names. We must specify
     # the database containing the referenced table explicitly
 
-    add_foreign_key :people_name_fk, :name, :references => db(user_db_uri).users.name
+    # Argument API
+    add_foreign_key :people_name_fk, :name, :references => db(user_db_uri).users.name, :on_update => :restrict, :on_delete => :restrict
+
+    # Drops a foreign key. Complains if that foreign key doesn't exist yet
+    drop_foreign_key :people_name_fk
+
+    # Block API
+    add_foreign_key :people_name_fk do
+      column :name, :references => db(user_db_uri).users.name
+      # on_update :restrict
+      # on_delete :restrict
+    end
 
     # Drops any constraint identified by the given name. Complains if
     # that constraint doesn't yet exist.
