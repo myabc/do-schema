@@ -279,10 +279,6 @@ DataObjects::Schema.database(uri) do
     # Drops a foreign key. Complains if that foreign key doesn't exist yet
     drop_foreign_key :work_fk
 
-    # Drops any constraint identified by the given name. Complains if
-    # that constraint doesn't yet exist.
-    drop_constraint :work_fk
-
   end
 
   alter_table :people do
@@ -312,6 +308,10 @@ DataObjects::Schema.database(uri) do
     # the database containing the referenced table explicitly
 
     add_foreign_key :people_name_fk, :name, :references => db(user_db_uri).users.name
+
+    # Drops any constraint identified by the given name. Complains if
+    # that constraint doesn't yet exist.
+    drop_constraint :people_name_fk
 
   end
 
