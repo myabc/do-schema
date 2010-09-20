@@ -199,8 +199,8 @@ DataObjects::Schema.database(uri) do
   create_table :people_tasks do
 
     column :id,        Auto,    :key    => true
-    column :person_id, Integer, :unique => true # part of Constraint::Unique.new('unique_person_id_task_id'
-    column :task_id,   Integer, :unique => true # part of Constraint::Unique.new('unique_person_id_task_id'
+    column :person_id, Integer, :unique => true # part of Constraint::Unique.new('unique_person_id_task_id')
+    column :task_id,   Integer, :unique => true # part of Constraint::Unique.new('unique_person_id_task_id')
 
     # The multiple :unique => true declarations above are one way
     # to construct a unique constraint spanning multiple columns.
