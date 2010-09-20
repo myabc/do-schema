@@ -177,8 +177,8 @@ DataObjects::Schema.database(uri) do
     # Add an index. Complains if an index with that name is already present
     index :name_index, :name
 
-    # Add a unique index. Complains if an index with that name is already present
-    unique_index :unique_token, :token
+    # Add a unique constraint. Complains if a constraint with that name is already present
+    unique :unique_token, :token
 
     # Bad example that illustrates how to add a check constraint for
     # which the condition depends on the values of multiple columns
@@ -192,21 +192,41 @@ DataObjects::Schema.database(uri) do
     column :name, String, :required => true
 
     # Add a unique index. Complains if an index with that name is already present
-    unique_index :index_name, :name
+    unique :unique_name, :name
+
+  end
+
+  create_table :people_tasks do
+
+    column :id,        Auto,    :key    => true
+    column :person_id, Integer, :unique => true # part of Constraint::Unique.new('unique_person_id_task_id'
+    column :task_id,   Integer, :unique => true # part of Constraint::Unique.new('unique_person_id_task_id'
+
+    # The multiple :unique => true declarations above are one way
+    # to construct a unique constraint spanning multiple columns.
+    # However, there's no control over the generated constraint name.
+    # The algorithm for constructing the constraint name just prepends
+    # the alphabetically sorted column names to the 'unique_' string,
+    # separating each column name with a '_'
+    #
+    # There's another way to declare a unique constraint spanning multiple
+    # columns, that also allows you to specify an arbitrary constraint name
+    #
+    #   unique :unique_person_tasks, [ :person_id, :task_id ]
+    #
+    # establishes a unique constraint for the same two columns, this time
+    # naming it explicitly as :unique_person_tasks
 
   end
 
   create_table :jobs do
 
     column :id,   Auto,   :key      => true
-    column :name, String, :required => true
-
-    # Add a unique index. Complains if an index with that name is already present
-    unique_index :unique_name, :name
+    column :name, String, :required => true, :unique => true # constraint name => 'unique_name'
 
   end
 
-  create_table :people_tasks do
+  create_table :people_jobs do
 
     # The :key and :references options provide shortcuts to the explicit
     # declarations of primary and foreign keys as seen below.
@@ -217,10 +237,10 @@ DataObjects::Schema.database(uri) do
     # table below.
 
     column :person_id, String  #, :key => true, :references => people.id, :on_update => :restrict, :on_delete => :restrict
-    column :task_id,   Integer #, :key => true, :references => tasks.id,  :on_update => :restrict, :on_delete => :restrict
+    column :job_id,    Integer #, :key => true, :references => jobs.id,   :on_update => :restrict, :on_delete => :restrict
 
     # Defining a composite primary key
-    primary_key [ :person_id, :task_id ]
+    primary_key [ :person_id, :job_id ]
 
     # Defining a foreign key with a single column can be done without passing
     # a block to the #foreign_key method. The 2nd parameter must be a symbol
@@ -234,7 +254,7 @@ DataObjects::Schema.database(uri) do
 
     # Argument API
     foreign_key :person_fk, :person_id, :references => people.id #, :on_update => :restrict, :on_delete => :restrict
-    foreign_key :task_fk,   :task_id,   :references => tasks.id  #, :on_update => :restrict, :on_delete => :restrict
+    foreign_key :job_fk,    :job_id,    :references => jobs.id   #, :on_update => :restrict, :on_delete => :restrict
 
     # Block API
     foreign_key :person_fk do
@@ -243,8 +263,8 @@ DataObjects::Schema.database(uri) do
       # on_delete :restrict
     end
 
-    foreign_key :task_fk do
-      column :task_id, :references => tasks.id
+    foreign_key :job_fk do
+      column :job_id, :references => jobs.id
       # on_update :restrict
       # on_delete :restrict
     end
