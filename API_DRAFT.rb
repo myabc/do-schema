@@ -191,7 +191,7 @@ DataObjects::Schema.database(uri) do
     column :id,   Auto,   :key      => true
     column :name, String, :required => true
 
-    # Add a unique index. Complains if an index with that name is already present
+    # Add a unique constraint. Complains if a constraint with that name is already present
     unique :unique_name, :name
 
   end
