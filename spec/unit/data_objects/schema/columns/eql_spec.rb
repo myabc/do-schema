@@ -56,4 +56,3 @@ describe 'DataObjects::Schema::Columns#eql?' do
   end
 
 end
-

@@ -31,4 +31,3 @@ module DataObjects
 
   end # module Schema
 end # module DataObjects
-

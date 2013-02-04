@@ -104,4 +104,3 @@ describe 'DataObjects::Schema::Column#eql?' do
   end
 
 end
-

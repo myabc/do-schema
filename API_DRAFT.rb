@@ -1,5 +1,3 @@
-
-
            ####################################################################
            #                                                                  #
            # DataObjects::Schema::                                            #
@@ -394,4 +392,3 @@ DataObjects::Schema.database(uri) do
   drop_table :workloads
 
 end
-

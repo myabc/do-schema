@@ -15,4 +15,3 @@ module DataObjects
 
   end
 end
-

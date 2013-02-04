@@ -11,4 +11,3 @@ describe 'DataObjects::Schema::Column#default_options' do
   it { should == default_options }
 
 end
-

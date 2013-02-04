@@ -77,4 +77,3 @@ describe 'DataObjects::Schema::Table#eql?' do
   end
 
 end
-

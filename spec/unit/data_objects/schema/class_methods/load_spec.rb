@@ -10,4 +10,3 @@ describe 'DataObjects::Schema.load' do
   it { pending { expect { subject }.to_not raise_error(NotImplementedError) } }
 
 end
-

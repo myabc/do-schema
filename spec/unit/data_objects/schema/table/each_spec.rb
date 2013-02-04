@@ -26,4 +26,3 @@ describe 'DataObjects::Schema::Table#each' do
     expect { subject }.to change { yields.dup }.from([]).to([column])
   end
 end
-

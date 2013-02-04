@@ -56,4 +56,3 @@ describe 'DataObjects::Schema::OrderedSet#eql?' do
   end
 
 end
-

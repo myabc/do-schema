@@ -92,4 +92,3 @@ describe 'DataObjects::Schema::Tables#==' do
   end
 
 end
-

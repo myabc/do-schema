@@ -20,4 +20,3 @@ class Immutable
   end
 
 end
-

@@ -31,4 +31,3 @@ describe 'DataObjects::Schema::Database#empty?' do
   end
 
 end
-

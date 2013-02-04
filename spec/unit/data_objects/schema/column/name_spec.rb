@@ -11,4 +11,3 @@ describe 'DataObjects::Schema::Column#name' do
   it { should == name }
 
 end
-

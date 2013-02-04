@@ -91,4 +91,3 @@ describe 'DataObjects::Schema::Columns#==' do
   end
 
 end
-

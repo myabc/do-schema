@@ -26,4 +26,3 @@ describe 'DataObjects::Schema::Table#columns' do
   end
 
 end
-

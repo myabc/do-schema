@@ -12,4 +12,3 @@ describe 'DataObjects::Schema::Database#name' do
   it { should == name }
 
 end
-

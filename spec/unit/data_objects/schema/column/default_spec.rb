@@ -12,4 +12,3 @@ describe 'DataObjects::Schema::Column#default' do
   it { should == default }
 
 end
-

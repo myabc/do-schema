@@ -12,4 +12,3 @@ describe 'DataObjects::Schema::Database#uri' do
   it { should == uri }
 
 end
-

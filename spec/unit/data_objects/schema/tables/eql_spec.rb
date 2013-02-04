@@ -56,4 +56,3 @@ describe 'DataObjects::Schema::Tables#eql?' do
   end
 
 end
-

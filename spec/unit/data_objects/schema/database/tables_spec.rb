@@ -47,4 +47,3 @@ describe 'DataObjects::Schema::Database#tables' do
   end
 
 end
-

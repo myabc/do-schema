@@ -13,4 +13,3 @@ describe 'DataObjects::Schema::OrderedSet#hash' do
   it { should == ordered_set.entries.hash }
 
 end
-

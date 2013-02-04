@@ -36,4 +36,3 @@ describe 'DataObjects::Schema::Column#required?' do
   end
 
 end
-

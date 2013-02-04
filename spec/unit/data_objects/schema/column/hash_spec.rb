@@ -14,4 +14,3 @@ describe 'DataObjects::Schema::Column#hash' do
   it { should == column.name.hash ^ column.default.hash ^ column.required?.hash }
 
 end
-

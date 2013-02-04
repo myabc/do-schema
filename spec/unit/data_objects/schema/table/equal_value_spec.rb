@@ -113,4 +113,3 @@ describe 'DataObjects::Schema::Table#==' do
   end
 
 end
-

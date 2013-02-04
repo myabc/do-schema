@@ -91,4 +91,3 @@ describe 'DataObjects::Schema::OrderedSet#==' do
   end
 
 end
-

@@ -13,4 +13,3 @@ describe 'DataObjects::Schema::Tables#hash' do
   it { should == tables.entries.hash }
 
 end
-

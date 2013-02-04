@@ -13,4 +13,3 @@ describe 'DataObjects::Schema::Columns#hash' do
   it { should == columns.entries.hash }
 
 end
-

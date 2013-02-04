@@ -134,4 +134,3 @@ describe 'DataObjects::Schema::Column#==' do
   end
 
 end
-
