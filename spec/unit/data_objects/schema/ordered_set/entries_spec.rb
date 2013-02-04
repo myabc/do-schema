@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/ordered_set/shared/entries_spec'
 
 describe 'DataObjects::Schema::OrderedSet#entries' do
 
@@ -26,4 +25,3 @@ describe 'DataObjects::Schema::OrderedSet#entries' do
   end
 
 end
-

@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/support/transformable'
-require 'spec/unit/data_objects/schema/transformable/fixtures/dummy'
 
 describe 'DataObjects::Schema::Transformable#transform' do
 
@@ -18,4 +17,3 @@ describe 'DataObjects::Schema::Transformable#transform' do
   its(:delta) { should == delta }
 
 end
-

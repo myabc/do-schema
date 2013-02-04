@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-shared_examples_for 'DataObjects::Schema::OrderedSet' do
+share_examples_for 'DataObjects::Schema::OrderedSet' do
 
   it { should be_kind_of(Enumerable) }
 
@@ -10,7 +8,7 @@ shared_examples_for 'DataObjects::Schema::OrderedSet' do
 
 end
 
-shared_examples_for 'DataObjects::Schema::OrderedSet#each' do
+share_examples_for 'DataObjects::Schema::OrderedSet#each' do
 
   it { should equal(set) }
 
@@ -19,4 +17,3 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#each' do
   end
 
 end
-

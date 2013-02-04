@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/ordered_set/shared/index_spec'
 
 describe 'DataObjects::Schema::OrderedSet#index' do
 
@@ -34,4 +33,3 @@ describe 'DataObjects::Schema::OrderedSet#index' do
   end
 
 end
-

@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/ordered_set/shared/include_spec'
 
 describe 'DataObjects::Schema::Tables#include?' do
 
@@ -27,4 +26,3 @@ describe 'DataObjects::Schema::Tables#include?' do
   end
 
 end
-

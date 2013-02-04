@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/column'
-require 'spec/unit/data_objects/schema/ordered_set/length_spec'
 
 describe 'DataObjects::Schema::Columns#length' do
 
@@ -40,4 +39,3 @@ describe 'DataObjects::Schema::Columns#length' do
   end
 
 end
-

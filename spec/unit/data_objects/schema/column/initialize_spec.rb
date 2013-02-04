@@ -5,7 +5,7 @@ describe 'DataObjects::Schema::Column#initialize' do
 
   let(:name) { 'foo' }
 
-  shared_examples_for 'calling DataObjects::Schema::Column#initialize' do
+  share_examples_for 'calling DataObjects::Schema::Column#initialize' do
 
     its(:name) { should == name }
 
@@ -55,4 +55,3 @@ describe 'DataObjects::Schema::Column#initialize' do
   end
 
 end
-

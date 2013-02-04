@@ -5,7 +5,7 @@
 
    let(:name) { 'name' }
 
-   shared_examples_for 'calling DataObjects::Schema::Table#initialize' do
+   share_examples_for 'calling DataObjects::Schema::Table#initialize' do
 
      its(:name)    { should == name }
      its(:columns) { should == DataObjects::Schema::Columns.new([]) }
@@ -29,4 +29,3 @@
    end
 
  end
-

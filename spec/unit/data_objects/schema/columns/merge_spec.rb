@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/column'
-require 'spec/unit/data_objects/schema/ordered_set/shared/merge_spec'
 
 describe 'DataObjects::Schema::Columns#merge' do
 
@@ -44,4 +43,3 @@ describe 'DataObjects::Schema::Columns#merge' do
   end
 
 end
-

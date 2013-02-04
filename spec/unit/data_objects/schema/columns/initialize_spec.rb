@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/column'
-require 'spec/unit/data_objects/schema/ordered_set/shared/initialize_spec'
 
 describe 'DataObjects::Schema::Columns#initialize' do
 
@@ -40,4 +39,3 @@ describe 'DataObjects::Schema::Columns#initialize' do
   end
 
 end
-

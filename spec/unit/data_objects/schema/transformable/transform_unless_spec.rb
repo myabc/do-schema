@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/support/transformable'
-require 'spec/unit/data_objects/schema/transformable/fixtures/dummy'
 
 describe 'DataObjects::Schema::Transformable#transform_unless' do
 
@@ -34,5 +33,3 @@ describe 'DataObjects::Schema::Transformable#transform_unless' do
   end
 
 end
-
-

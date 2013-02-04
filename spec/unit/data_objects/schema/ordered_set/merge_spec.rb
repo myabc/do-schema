@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/ordered_set/shared/merge_spec'
 
 describe 'DataObjects::Schema::OrderedSet#merge' do
 
@@ -44,4 +43,3 @@ describe 'DataObjects::Schema::OrderedSet#merge' do
   end
 
 end
-

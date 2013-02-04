@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-shared_examples_for 'DataObjects::Schema::OrderedSet#initialize when no entries are given' do
+share_examples_for 'DataObjects::Schema::OrderedSet#initialize when no entries are given' do
 
   it { should be_empty }
 
@@ -9,7 +7,7 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#initialize when no entries 
 
 end
 
-shared_examples_for 'DataObjects::Schema::OrderedSet#initialize when entries are given and they do not contain duplicates' do
+share_examples_for 'DataObjects::Schema::OrderedSet#initialize when entries are given and they do not contain duplicates' do
 
   it { should_not be_empty    }
   it { should include(entry1) }
@@ -24,7 +22,7 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#initialize when entries are
 
 end
 
-shared_examples_for 'DataObjects::Schema::OrderedSet#initialize when entries are given and they contain duplicates' do
+share_examples_for 'DataObjects::Schema::OrderedSet#initialize when entries are given and they contain duplicates' do
 
   it { should_not be_empty    }
   it { should include(entry1) }
@@ -32,4 +30,3 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#initialize when entries are
   its(:length) { should ==  1 }
 
 end
-

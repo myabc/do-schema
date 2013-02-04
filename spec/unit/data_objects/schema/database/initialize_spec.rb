@@ -6,7 +6,7 @@ describe 'DataObjects::Schema::Database#initialize' do
   let(:name) { 'foo' }
   let(:uri)  { 'foo' }
 
-  shared_examples_for 'calling DataObjects::Schema::Database#initialize' do
+  share_examples_for 'calling DataObjects::Schema::Database#initialize' do
 
     its(:name)   { should == name }
     its(:uri)    { should == uri }
@@ -51,4 +51,3 @@ describe 'DataObjects::Schema::Database#initialize' do
   end
 
 end
-

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-shared_examples_for 'DataObjects::Schema::OrderedSet#merge when merging two empty sets' do
+share_examples_for 'DataObjects::Schema::OrderedSet#merge when merging two empty sets' do
 
   it { should be_instance_of(set.class) }
   it { should equal(set)                }
@@ -8,7 +6,7 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#merge when merging two empt
 
 end
 
-shared_examples_for 'DataObjects::Schema::OrderedSet#merge when merging a set with already present entries' do
+share_examples_for 'DataObjects::Schema::OrderedSet#merge when merging a set with already present entries' do
 
   it { should equal(set)     }
   it { should == set         }
@@ -20,7 +18,7 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#merge when merging a set wi
 
 end
 
-shared_examples_for 'DataObjects::Schema::OrderedSet#merge when merging a set with not yet present entries' do
+share_examples_for 'DataObjects::Schema::OrderedSet#merge when merging a set with not yet present entries' do
 
   it { should_not equal(set)  }
   it { should != set          }
@@ -32,4 +30,3 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#merge when merging a set wi
   end
 
 end
-

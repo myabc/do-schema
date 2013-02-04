@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/column'
-require 'spec/unit/data_objects/schema/ordered_set/shared/empty_spec'
 
 describe 'DataObjects::Schema::Columns#empty?' do
 
@@ -26,4 +25,3 @@ describe 'DataObjects::Schema::Columns#empty?' do
   end
 
 end
-

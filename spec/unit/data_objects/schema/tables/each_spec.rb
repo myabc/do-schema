@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/ordered_set/shared/each_spec'
 
 describe 'DataObjects::Schema::Tables' do
 
@@ -24,4 +23,3 @@ describe 'DataObjects::Schema::Tables#each' do
   it_should_behave_like 'DataObjects::Schema::OrderedSet#each'
 
 end
-

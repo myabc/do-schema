@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/table'
-require 'spec/unit/data_objects/schema/ordered_set/shared/entries_spec'
 
 describe 'DataObjects::Schema::Tables#entries' do
 
@@ -27,4 +26,3 @@ describe 'DataObjects::Schema::Tables#entries' do
   end
 
 end
-

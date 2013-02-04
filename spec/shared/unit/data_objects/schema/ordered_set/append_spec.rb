@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-shared_examples_for 'DataObjects::Schema::OrderedSet#<< when appending an already included entry' do
+share_examples_for 'DataObjects::Schema::OrderedSet#<< when appending an already included entry' do
 
   its(:entries) { should include(entry1) }
   its(:entries) { should include(entry2) }
@@ -19,7 +17,7 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#<< when appending an alread
 
 end
 
-shared_examples_for 'DataObjects::Schema::OrderedSet#<< when appending a not yet included entry' do
+share_examples_for 'DataObjects::Schema::OrderedSet#<< when appending a not yet included entry' do
 
   its(:entries) { should include(entry1) }
   its(:entries) { should include(entry2) }
@@ -37,4 +35,3 @@ shared_examples_for 'DataObjects::Schema::OrderedSet#<< when appending a not yet
   end
 
 end
-

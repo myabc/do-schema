@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/ordered_set/shared/each_spec'
 
 describe 'DataObjects::Schema::OrderedSet' do
 
@@ -21,4 +20,3 @@ describe 'DataObjects::Schema::OrderedSet#each' do
   it_should_behave_like 'DataObjects::Schema::OrderedSet#each'
 
 end
-

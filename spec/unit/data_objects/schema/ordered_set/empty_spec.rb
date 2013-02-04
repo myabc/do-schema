@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'do-schema/support/ordered_set'
-require 'spec/unit/data_objects/schema/ordered_set/shared/empty_spec'
 
 describe 'DataObjects::Schema::OrderedSet#empty?' do
 
@@ -23,4 +22,3 @@ describe 'DataObjects::Schema::OrderedSet#empty?' do
   end
 
 end
-
