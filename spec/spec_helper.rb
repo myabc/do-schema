@@ -1,3 +1,12 @@
+require 'rubygems'
+
+if ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter "/spec/"
+  end
+end
+
 require 'do-schema'
 require 'rspec'
 %w(shared support).each do |name|
