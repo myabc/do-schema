@@ -21,7 +21,7 @@ end
 share_examples_for 'DataObjects::Schema::OrderedSet#merge when merging a set with not yet present entries' do
 
   it { should_not equal(set)  }
-  it { should != set          }
+  xit { should_not eq(set)    }
   it { should include(entry1) }
   it { should include(entry2) }
 
